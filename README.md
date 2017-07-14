@@ -7,3 +7,4 @@ django tutorial
 https://nomade.kr/vod/djangogirls/
 
 
+.gitignore 수정할것!
