@@ -6,4 +6,27 @@
 
 {% block content %}
 <h1>질문게시판</h1>
+<a href="/q/create">글 작성</a>
+<a href="/admin/qnas/major/add/">전공 추가</a>
+<a href="/admin/qnas/course/add/">과목 추가</a>
+
+<select name="major">
+  {% for major in majors %}
+  <option value="{{major.id}}">{{major.name}}</option>
+  {% endfor %}
+</select>
+
+<select name="course">
+  {% for course in courses %}
+  <option value="{{course.id}}">{{course.name}}</option>
+  {% endfor %}
+</select>
+<hr>
+{% for post in posts %}
+<h1><a href="/q/read/{{post.id}}">{{post.title}}</a></h1>
+<p>{{post.major}}</p>
+<p>{{post.course}}</p>
+<p>{{post.content}}</p>
+<hr>
+{% endfor %}
 {% endblock %}
