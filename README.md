@@ -15,5 +15,4 @@ https://github.com/LikeAPlus/Django_Tutorial
 ## TODO
 
 - Major, Course Filter
-- Post Update, Delete
-- Comment Update, Delete
+- Post, Comment Update

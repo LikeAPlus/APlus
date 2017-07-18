@@ -17,7 +17,7 @@ def index(request, major_name = '', course_name = ''):
             major = Major.objects.get(name = major_name)
             posts = Post.objects.filter(major = major)
         except:
-            posts = Post.objects.all()
+            posts = Post.objects.order_by("id").reverse()
 
     majors = Major.objects.all()
     courses = Course.objects.all()
@@ -42,6 +42,13 @@ def create_question(request):
 
     return HttpResponseRedirect("/q/read/{}".format(post.id))
 
+def delete_question(request):
+    post = Post.objects.get(id = request.POST['post_id'])
+    post.delete()
+
+    return HttpResponseRedirect("/")
+
+
 def read(request, post_id):
     post = Post.objects.get(id = post_id)
     comments = Comment.objects.filter(post = post)
@@ -57,3 +64,10 @@ def create_answer(request):
     comment.save()
 
     return HttpResponseRedirect("/q/read/{}".format(post.id))
+
+def delete_answer(request):
+    post_id = request.POST['post_id']
+    comment = Comment.objects.get(id = request.POST['comment_id'])
+    comment.delete()
+
+    return HttpResponseRedirect("/q/read/{}".format(post_id))
