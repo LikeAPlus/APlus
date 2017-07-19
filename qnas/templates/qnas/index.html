@@ -10,15 +10,23 @@
 <a href="/admin/qnas/major/add/">전공 추가</a>
 <a href="/admin/qnas/course/add/">과목 추가</a>
 
-<select name="major">
+<select name="major" onchange="if (this.value) window.location.href = '/qnas/' + this.value">
   {% for major in majors %}
-  <option value="{{major.id}}">{{major.name}}</option>
+    {% if major.name == major_name %}
+      <option value="{{major.name}}" selected>{{major.name}}</option>
+    {% else %}
+      <option value="{{major.name}}">{{major.name}}</option>
+    {% endif %}
   {% endfor %}
 </select>
 
-<select name="course">
+<select name="course" onchange="if (this.value) window.location.href = '/qnas/{{major_name}}/' + this.value">
   {% for course in courses %}
-  <option value="{{course.id}}">{{course.name}}</option>
+    {% if course.name == course_name %}
+      <option value="{{course.name}}" selected>{{course.name}}</option>
+    {% else %}
+      <option value="{{course.name}}">{{course.name}}</option>
+    {% endif %}
   {% endfor %}
 </select>
 <hr>

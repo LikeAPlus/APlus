@@ -21,7 +21,7 @@ def index(request, major_name = '', course_name = ''):
 
     majors = Major.objects.all()
     courses = Course.objects.all()
-    context = {'posts': posts, 'majors': majors, 'courses': courses}
+    context = {'posts': posts, 'majors': majors, 'courses': courses, 'major_name': major_name, 'course_name': course_name}
     return render(request, 'qnas/index.html', context)
 
 def create(request):
