@@ -48,7 +48,6 @@ def delete_question(request):
 
     return HttpResponseRedirect("/")
 
-
 def read(request, post_id):
     post = Post.objects.get(id = post_id)
     comments = Comment.objects.filter(post = post)
