@@ -1,0 +1,43 @@
+{% extends "qnas/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+Aplus
+{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title lang="ko"></title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- bootstrap css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<!-- your custom css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'qnas/style.css' %}" />
+</head>
+<body>
+  <!-- Login -->
+   <div class="login_img"></div>
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">로그인</h3>
+          <div>
+            <input class="form-control" type="text" placeholder="이메일" id="example-text-input">
+          </div>
+          <div>
+            <input class="form-control" type="text" placeholder="비밀번호" id="example-text-input">
+          </div>
+          <input type="checkbox" class="form-check-input">
+          <span class="login_checkbox">로그인 상태 유지하기</span>
+      </div>
+    </div>
+</body>
+{% endblock %}
