@@ -70,6 +70,3 @@ def delete_answer(request):
     comment.delete()
 
     return HttpResponseRedirect("/q/read/{}".format(post_id))
-
-def login(request):
-	return render(request, 'qnas/login.html')
