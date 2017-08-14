@@ -61,6 +61,9 @@ a:hover {
 	padding-right: 50px;
 }
 
+.navbar-brand {
+	color: #fff;
+}
 /* Search */
 .search {
 	width: 200px;
@@ -87,7 +90,7 @@ a:hover {
 /* Login */
 .login_img {
 	height: 500px;
-	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%),url(login2.jpg);
+	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -107,7 +110,9 @@ a:hover {
 }
 
 .carousel-item {
-  background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(log.jpg);
+
+  background-image: radial-gradient(circle, transparent 0%, #233B4D 100%), url(login1.jpg);
+
 }
 
 .card {

@@ -36,49 +36,14 @@ Aplus
 		  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 		    <ul class="navbar-nav">
 		      <li class="nav-item active">
-		        <a class="nav-link px-lg-4" href="/q/login" lang="en"><button type="button" class="btn btn-warning">login</button> <span class="sr-only">(현재 페이지)</span></a>
+		        <a class="nav-link px-lg-4" href="/u/sign_in" lang="en"><button type="button" class="btn btn-warning">login</button> <span class="sr-only">(현재 페이지)</span></a>
 		      </li>
 		    </ul>
 		  </div>
 		</nav>
 	</header>
 
-	<!-- <header class="header">
-	<ul class="nav">
-	  <li class="nav-item">
-	    <a class="nav-link active" href="#">Active</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">Link</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">Link</a>
-	  </li>
-	    <a class="nav-link px-lg-4" href="/q/login" lang="en"><button type="button" class="btn btn-warning">login</button> <span class="sr-only">(현재 페이지)</span></a>
-		</li>
-	</ul>
-	</header> -->
-	
 	<!-- Search -->
-	<section class="search">
-	  <form>
-	    <div class="input-group">
-		    <input type="text" class="form-control" placeholder="학교 검색" aria-describedby="btnGroupAddon">
-		  	<span class="input-group-addon" id="btnGroupAddon">
-		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-		  	</span>
-		  </div>
-	  </form>
-	  
-	    <a href="#"><span class="name">광운대</span></a>
-	    <a href="#"><span class="name">덕성여대</span></a>
-	    <a href="#"><span class="name">서울대</span></a>
-	    <a href="#"><span class="name">연세대</span></a>
-	    <a href="#"><span class="name">숙명여대</span></a>
-	    <a href="#"><span class="name">고려대</span></a>
-	    <a href="#"><span class="name">이화여대</span></a>
-	</section>
-	
 	<section class="search">
 	  <form>
 	    <div class="input-group">
@@ -88,43 +53,62 @@ Aplus
 		  	</span>
 		  </div>
 	  </form>
+
 	  
 	    <a href="#"><span class="name">국어국문학과</span></a>
 	    <a href="#"><span class="name">컴퓨터공학과</span></a>
 	    <a href="#"><span class="name">화학공학과</span></a>
+
+	</section>
+
+	<section class="search">
+	  <form>
+	    <div class="input-group">
+		    <input type="text" class="form-control" placeholder="과목 검색" aria-describedby="btnGroupAddon">
+		  	<span class="input-group-addon" id="btnGroupAddon">
+		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+		  	</span>
+		  </div>
+	  </form>
+
+	    <a href="#"><span class="name">국어국문학과</span></a>
+	    <a href="#"><span class="name">컴퓨터공학과</span></a>
+	    <a href="#"><span class="name">화학공학과</span></a>
+
 	</section>
 
 	<section class="search2">
 		<div class="input-group">
-	    <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
-	  	<span class="input-group-addon" id="btnGroupAddon">
-	  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-	  	</span>
-	  </div>
+		    <input type="text" class="form-control" placeholder="질문 검색" aria-describedby="btnGroupAddon">
+		  	<span class="input-group-addon" id="btnGroupAddon">
+		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+		  	</span>
+	    </div>
 	  	
-  	<ul class="nav nav-tabs">
-		  <li class="nav-item">
-		    <a class="nav-link active" href="#">최신</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">인기</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">답변필요</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">태그선택</a>
-		  </li>
+	  	<ul class="nav nav-tabs">
+			  <li class="nav-item">
+			    <a class="nav-link active" href="#">최신</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">인기</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">답변필요</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">태그선택</a>
+			  </li>
+
 		</ul>
-			
+
 	</section>
-	  
+
 
 	<h1>질문게시판</h1>
     <a href="/q/create">글 작성</a>
     <a href="/admin/qnas/major/add/">전공 추가</a>
     <a href="/admin/qnas/course/add/">과목 추가</a>
-	    
+
 </body>
 
 <select name="major" onchange="if (this.value) window.location.href = '/qnas/' + this.value">
