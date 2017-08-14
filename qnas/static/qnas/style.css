@@ -130,11 +130,6 @@ a:hover {
 	font-weight: 700;
 }
 
-/*.form-control1 {
-	width: 320px;
-	height: 40px;
-	margin-top: 10px;
-}*/
 
 #example-text-input{
 	margin-top: 20px;
@@ -145,12 +140,18 @@ a:hover {
 }
 
 
-.form-check-input {
-	margin-left: 3px;
-	margin-top: 10px;
+#example-text-input {
+	margin-top: 15px;
+	width: 320px;
+	height: 48px;
+}
+
+input.form-check-input {
+	margin-left: -15px;
+	margin-top: 5px;
 }
 
 .login_checkbox {
-	margin-left: 20px;
-	padding-top: 150px;
+	font-size: 14px;
+	color: #9AA0A2;
 }
