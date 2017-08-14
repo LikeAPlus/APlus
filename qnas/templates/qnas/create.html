@@ -1,0 +1,38 @@
+{% extends "qnas/layout.html" %}
+
+{% block title %}
+질문하기
+{% endblock %}
+
+{% block content %}
+<h1>질문하기</h1>
+<form action="/q/create_question" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div>
+    <label>제목</label>
+    <div>
+      <input type="text" name="title">
+    </div>
+  </div>
+  <div>
+    <label>내용</label>
+    <textarea name="content" rows="3"></textarea>
+  </div>
+
+  <select name="major">
+    {% for major in majors %}
+    <option value="{{major.id}}">{{major.name}}</option>
+    {% endfor %}
+  </select>
+
+  <select name="course">
+    {% for course in courses %}
+    <option value="{{course.id}}">{{course.name}}</option>
+    {% endfor %}
+  </select>
+  <!-- <div class="form-group">
+    <input type="file" name="image" accept="image/*">
+  </div> -->
+  <button type="submit">작성</button>
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "qnas/layout.html" %}
+
+{% block title %}
+{{post.title}}
+{% endblock %}
+
+{% block content %}
+<h1>{{post.title}}</h1>
+<p>{{post.major}}</p>
+<p>{{post.course}}</p>
+<p>{{post.content}}</p>
+
+<hr>
+{% for comment in comments %}
+  <p>{{comment.content}}</p>
+  <form action="/a/delete_answer" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="post_id" value="{{post.id}}">
+    <input type="hidden" name="comment_id" value="{{comment.id}}">
+    <button type="submit">댓글 삭제</button>
+  </form>
+{% endfor %}
+
+<form action="/a/create_answer" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="hidden" name="post_id" value="{{post.id}}">
+  <label>내용</label>
+  <div>
+    <input type="text" name="content">
+  </div>
+  <button type="submit">작성</button>
+</form>
+<br>
+
+<form action="/q/delete_question" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="hidden" name="post_id" value="{{post.id}}">
+  <button type="submit">글 삭제</button>
+</form>
+<a href="/">목록</a>
+{% endblock %}
