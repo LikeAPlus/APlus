@@ -26,7 +26,7 @@ Aplus
 <body>
 	<!-- Header -->
 	<header class="header">
-		<nav class="navber navbar-toggleable-md navbar-light navbar-inverse bg-inverse">
+		<nav class="navbar navbar-toggleable-md navbar-light navbar-inverse bg-inverse">
 		 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		  	<span class="fa fa-bars"></span>
 		  </button>
@@ -85,25 +85,45 @@ Aplus
 		  	</span>
 	    </div>
 	  	
-	  	<ul class="nav nav-tabs">
-			  <li class="nav-item">
-			    <a class="nav-link active" href="#">최신</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">인기</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">답변필요</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#">태그선택</a>
-			  </li>
-
+	  <ul class="nav nav-tabs" id="myTab" role="tablist">
+		  <li class="nav-item">
+		    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">최신</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">인기</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">답변필요</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">태그선택</a>
+		  </li>
+		 
 		</ul>
+		<div class="tab-content" id="myTabContent">
+		  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+		  	{% for post in posts %}
+				<h1><a href="/q/read/{{post.id}}">{{post.title}}</a></h1>
+				<p>{{post.major}}</p>
+				<p>{{post.course}}</p>
+				<p>{{post.content}}</p>
+
+			{% endfor %}
+		  </div>
+		  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+		  <div class="tab-pane fade" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab">...</div>
+		  <div class="tab-pane fade" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">...</div>
+		</div>
 
 	</section>
+</body>
 
+<!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
+<!-- 
 	<h1>질문게시판</h1>
     <a href="/q/create">글 작성</a>
     <a href="/admin/qnas/major/add/">전공 추가</a>
@@ -138,4 +158,4 @@ Aplus
 <p>{{post.content}}</p>
 
 {% endfor %}
-{% endblock %}
+{% endblock %} -->
