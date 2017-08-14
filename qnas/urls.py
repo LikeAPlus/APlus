@@ -11,5 +11,4 @@ urlpatterns = [
     url(r'^q/read/(?P<post_id>.+)/$', views.read),
     url(r'^a/create_answer$', views.create_answer),
     url(r'^a/delete_answer$', views.delete_answer),
-    url(r'^q/login$', views.login),
 ]
