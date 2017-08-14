@@ -23,6 +23,7 @@ class Post(models.Model):
     course = models.ForeignKey(Course)
     title = models.CharField(max_length=123)
     content = models.TextField()
+    # like_count = models.IntegerField()
 
     def __str__(self):
         return self.title

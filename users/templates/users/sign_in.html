@@ -43,29 +43,36 @@ Aplus
       </nav>
     </header> -->
   <!-- Login -->
+  <form action="" method="post">
+      {% csrf_token %}
+  <section id="cover">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+          <!-- <div class="carousel-inner" role="listbox"> -->
+          <section class="carousel-item active">
+              <div class="card">
+                  <div class="card-block">
 
-   <section id="cover">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-     <!-- <div class="carousel-inner" role="listbox"> -->
-        <section class="carousel-item active">
-           <div class="card">
-            <div class="card-block">
-              <h3 class="card-title">로그인</h3>
-                <div>
-                  <input class="form-control" type="text" placeholder="이메일" id="example-text-input">
-                </div>
-                <div>
-                  <input class="form-control" type="text" placeholder="비밀번호" id="example-text-input">
-                </div>
-                <input type="checkbox" class="form-check-input">
-                <span class="login_checkbox">로그인 상태 유지하기</span>
-            </div>
-    </div>
-    </section>
-    </div>
+                      <h3 class="card-title">로그인</h3>
+                      <div>
+{#                          <input class="form-control" type="text" placeholder="이메일" id="example-text-input">#}
+{#                      </div>#}
+{#                      <div>#}
+{#                          <input class="form-control" type="password" placeholder="비밀번호" id="example-text-input">#}
+{#                      </div>#}
 
-    </section>
-       
+                      {{ form.as_p }}
+
+                      <input type="checkbox" class="form-check-input">
+                      <span class="login_checkbox">로그인 상태 유지하기</span>
+                  </div>
+
+                  <input type="submit">
+              </div>
+          </section>
+      </div>
+
+  </section>
+  </form>
 
 </body>
 {% endblock %}
