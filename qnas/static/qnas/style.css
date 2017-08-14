@@ -70,11 +70,13 @@ a:hover {
 	height: 100%;
 	border-right: 1px solid #d6d6d6;
 	float: left;
+	margin-top: 20px;
 }
 
 .search2 {
-	width: ;
+	width: 1000px;
 	float: left;
+	margin: 20px;
 }
 
 .name {
@@ -128,12 +130,15 @@ a:hover {
 	font-weight: 700;
 }
 
-/*form-control {
-	width: 320px;
-	height: 40px;
-	margin-top: 10px;
+
+#example-text-input{
+	margin-top: 20px;
 }
-*/
+
+.nav.nav-tabs {
+	margin-top: 20px;
+}
+
 
 #example-text-input {
 	margin-top: 15px;
