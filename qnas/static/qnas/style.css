@@ -116,6 +116,7 @@ a:hover {
 	width: 360px;
 	height: 460px;
 	margin: 0 auto;
+	border-radius: 20px !important;
 }
 
 .card-title {
@@ -124,19 +125,25 @@ a:hover {
 	font-weight: 700;
 }
 
-/*.form-control {
+/*form-control {
 	width: 320px;
 	height: 40px;
 	margin-top: 10px;
 }
 */
 
-.form-check-input {
-	margin-left: 3px;
-	margin-top: 10px;
+#example-text-input {
+	margin-top: 15px;
+	width: 320px;
+	height: 48px;
+}
+
+input.form-check-input {
+	margin-left: -15px;
+	margin-top: 5px;
 }
 
 .login_checkbox {
-	margin-left: 20px;
-	padding-top: 150px;
+	font-size: 14px;
+	color: #9AA0A2;
 }
