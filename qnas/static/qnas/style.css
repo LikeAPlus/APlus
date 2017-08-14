@@ -86,9 +86,27 @@ a:hover {
 .login_img {
 	height: 500px;
 	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
+
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
+}
+
+.carousel-item {
+  height: 100vh;
+  padding-top: 45px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #fff;
+}
+
+.carousel-item {
+  background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
 }
 
 .card {
