@@ -18,11 +18,13 @@ class SigninForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs = {
-            'class': 'form-control'
+            'class': 'form-control',
+            'placeholder': 'USERNAME'
 
         }
         self.fields['password'].widget.attrs = {
-            'class': 'form-control'
+            'class': 'form-control',
+            'placeholder': 'PASSWORD'
         }
 
     username = UsernameField(
