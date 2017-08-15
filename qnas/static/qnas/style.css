@@ -52,11 +52,15 @@ a:hover {
 	color: #000;
 }
 
+a.navbar-brand {
+	color: #fff;
+}
+
 .navbar-brand {
     padding-left: 50px;
 }
 
-.a.nav-link {
+a.nav-link {
 	font-size: 0.73rem;
 	line-height: 1.82;
 	letter-spacing: 0.14em;
