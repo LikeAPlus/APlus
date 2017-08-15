@@ -27,31 +27,31 @@ def index(request, major_name = '', course_name = ''):
 
 def create(request):
 
-    majors = Major.objects.all()
-    courses = Course.objects.all()
-    context = {'majors': majors, 'courses': courses}
+    if request.method == 'POST':
+        major = Major.objects.get(id=request.POST['major'])
+        course = Course.objects.get(id=request.POST['course'])
+        title = request.POST['title']
+        content = request.POST['content']
 
-    return render(request, 'qnas/create.html', context)
+        post = Post(major=major, course=course, title=title, content=content)
+        post.save()
 
+        # return HttpResponseRedirect("/q/read/{}".format(post.id))
+        return redirect('qnas:read', post.id)
+    else:
 
-def create_question(request):
+        majors = Major.objects.all()
+        courses = Course.objects.all()
+        context = {'majors': majors, 'courses': courses}
 
-    major = Major.objects.get(id = request.POST['major'])
-    course = Course.objects.get(id = request.POST['course'])
-    title = request.POST['title']
-    content = request.POST['content']
+        return render(request, 'qnas/create.html', context)
 
-    post = Post(major = major, course = course, title = title, content = content)
-    post.save()
-
-    # return HttpResponseRedirect("/q/read/{}".format(post.id))
-    return redirect('qnas:read', post.id)
 
 def delete_question(request):
     post = Post.objects.get(id = request.POST['post_id'])
     post.delete()
 
-    return HttpResponseRedirect("/")
+    return redirect("/qnas")
 
 def read(request, post_id):
     post = Post.objects.get(id = post_id)
@@ -67,14 +67,14 @@ def create_answer(request):
     comment = Comment(post = post, content = content)
     comment.save()
 
-    return HttpResponseRedirect("/q/read/{}".format(post.id))
+    return redirect('qnas:read', post.id)
 
 def delete_answer(request):
     post_id = request.POST['post_id']
     comment = Comment.objects.get(id = request.POST['comment_id'])
     comment.delete()
 
-    return HttpResponseRedirect("/q/read/{}".format(post_id))
+    return redirect('qnas:read', post_id)
 
 
 

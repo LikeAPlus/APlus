@@ -200,6 +200,6 @@ ENV/
 
 
 .idea/
-
+secrets.json
 
 # End of https://www.gitignore.io/api/macos,django,python,pycharm
