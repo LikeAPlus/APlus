@@ -96,6 +96,7 @@ Aplus
 		  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 		  	{% for post in posts %}
 				<h1><a href="/qnas/read/{{post.id}}">{{post.title}}</a></h1>
+                <p>{{ post.user }}</p>
 				<p>{{post.major}}</p>
 				<p>{{post.course}}</p>
 				<p>{{post.content}}</p>
@@ -115,39 +116,4 @@ Aplus
   <!-- bootstrap -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-<!--
-	<h1>질문게시판</h1>
-    <a href="/q/create">글 작성</a>
-    <a href="/admin/qnas/major/add/">전공 추가</a>
-    <a href="/admin/qnas/course/add/">과목 추가</a>
-
-</body>
-
-<select name="major" onchange="if (this.value) window.location.href = '/qnas/' + this.value">
-  {% for major in majors %}
-    {% if major.name == major_name %}
-      <option value="{{major.name}}" selected>{{major.name}}</option>
-    {% else %}
-      <option value="{{major.name}}">{{major.name}}</option>
-    {% endif %}
-  {% endfor %}
-</select>
-
-<select name="course" onchange="if (this.value) window.location.href = '/qnas/{{major_name}}/' + this.value">
-  {% for course in courses %}
-    {% if course.name == course_name %}
-      <option value="{{course.name}}" selected>{{course.name}}</option>
-    {% else %}
-      <option value="{{course.name}}">{{course.name}}</option>
-    {% endif %}
-  {% endfor %}
-</select>
-
-{% for post in posts %}
-<h1><a href="/q/read/{{post.id}}">{{post.title}}</a></h1>
-<p>{{post.major}}</p>
-<p>{{post.course}}</p>
-<p>{{post.content}}</p>
-
-{% endfor %}
 {% endblock %}
