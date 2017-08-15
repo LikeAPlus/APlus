@@ -31,7 +31,7 @@ Aplus
 		  	<span class="fa fa-bars"></span>
 		  </button>
 		  <h1 class="brand">
-		  	<a class="navbar-brand" href="#" lang="en">Aplus</a>
+		  	<a class="navbar-brand" href="/q/index" lang="en">Aplus</a>
 		  </h1>
 		  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 		    <ul class="navbar-nav">
@@ -85,6 +85,7 @@ Aplus
 		  	</span>
 	    </div>
 
+
 	    <form class="write">
 			<div class="form-group">
 				<input name = "title" placeholder="title" class="title">
@@ -106,18 +107,7 @@ Aplus
   			</div>
 	    </form>
 	  	
-
-	 <!--  	 <form class="write">
-	  	 	<p>
-	  	 		<input name="title" placeholder="title" class="title">
-	  	 	</p>
-				
-	  	 	<p>
-				<textarea name ="text" placeholder="content" row="10"></textarea>
-			</p>
-			<input class="file" type="file" name="file" multiple="multiple">
-		</form> -->
-
+	  	
 	  <ul class="nav nav-tabs" id="myTab" role="tablist">
 		  <li class="nav-item">
 		    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">최신</a>
@@ -161,9 +151,7 @@ Aplus
     <a href="/q/create">글 작성</a>
     <a href="/admin/qnas/major/add/">전공 추가</a>
     <a href="/admin/qnas/course/add/">과목 추가</a>
-
 </body>
-
 <select name="major" onchange="if (this.value) window.location.href = '/qnas/' + this.value">
   {% for major in majors %}
     {% if major.name == major_name %}
@@ -173,7 +161,6 @@ Aplus
     {% endif %}
   {% endfor %}
 </select>
-
 <select name="course" onchange="if (this.value) window.location.href = '/qnas/{{major_name}}/' + this.value">
   {% for course in courses %}
     {% if course.name == course_name %}
@@ -183,12 +170,13 @@ Aplus
     {% endif %}
   {% endfor %}
 </select>
-
 {% for post in posts %}
 <h1><a href="/q/read/{{post.id}}">{{post.title}}</a></h1>
 <p>{{post.major}}</p>
 <p>{{post.course}}</p>
 <p>{{post.content}}</p>
-
 {% endfor %}
+<<<<<<< HEAD
 {% endblock %} -->
+
+

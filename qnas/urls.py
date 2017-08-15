@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^qnas/(?P<major_name>[a-zA-Z]+)/$', views.index),
     url(r'^qnas/(?P<major_name>[a-zA-Z]+)/(?P<course_name>[a-zA-Z]+)/$', views.index),
     url(r'^q/create/$', views.create),
+    url(r'^q/index/$', views.index),
     url(r'^q/create_question$', views.create_question),
     url(r'^q/delete_question$', views.delete_question),
     url(r'^q/read/(?P<post_id>.+)/$', views.read),
