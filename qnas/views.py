@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 
@@ -21,15 +22,15 @@ def index(request, major_name = '', course_name = ''):
 
     majors = Major.objects.all()
     if major_name != '':
-        courses = Course.objects.filter(major_id=1)
+        courses = Course.objects.filter(major=major)
     else:
         courses = ''
     context = {'posts': posts, 'majors': majors, 'courses': courses, 'major_name': major_name, 'course_name': course_name}
     return render(request, 'qnas/index.html', context)
 
 
+@login_required(login_url='/users/signin/')
 def create(request):
-
     if request.method == 'POST':
         major = Major.objects.get(id=request.POST['major'])
         course = Course.objects.get(id=request.POST['course'])
