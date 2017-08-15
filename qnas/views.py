@@ -2,8 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
-
+from django.contrib.auth.decorators import login_required
 from .models import Major, Course, Post, Comment
 
 # Create your views here.
@@ -21,13 +20,13 @@ def index(request, major_name = '', course_name = ''):
 
     majors = Major.objects.all()
     if major_name != '':
-        courses = Course.objects.filter(major=major)
+        courses = Course.objects.filter(major_id=1)
     else:
         courses = ''
     context = {'posts': posts, 'majors': majors, 'courses': courses, 'major_name': major_name, 'course_name': course_name}
     return render(request, 'qnas/index.html', context)
 
-
+@login_required
 def create(request):
 
     if request.method == 'POST':
@@ -39,10 +38,8 @@ def create(request):
         post = Post(major=major, course=course, title=title, content=content)
         post.save()
 
-        # return HttpResponseRedirect("/q/read/{}".format(post.id))
         return redirect('qnas:read', post.id)
     else:
-
         majors = Major.objects.all()
         courses = Course.objects.all()
         context = {'majors': majors, 'courses': courses}
