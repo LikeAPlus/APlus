@@ -34,18 +34,22 @@ a:hover {
 	text-decoration: none;
 }
 
+/*.btn:hover {
+	text-decoration-color: initial
+}*/
 /* Header */
 .navbar-toggler {
     font-size: 1rem;
 	border: none;
 }
 
+
 .brand {
 	font-size: 1.3333rem;
 	line-height: 1.4333333; /* 20px/14px */
 	font-weight: 700; /* Bold */
 	letter-spacing: 0.1em;
-	color: #fff;
+	color: #000;
 }
 
 .navbar-brand {
@@ -60,16 +64,26 @@ a:hover {
 	padding-right: 50px;
 }
 
+.navbar-brand {
+	color: #fff;
+}
 /* Search */
 .search {
 	width: 200px;
 	height: 100%;
 	border-right: 1px solid #d6d6d6;
 	float: left;
+	margin-top: 20px;
 }
 
 .search2 {
+	width: 800px;
 	float: left;
+	margin: 20px;
+}
+
+.nav.nav-tabs {
+	margin-top: 20px;
 }
 
 .name {
@@ -83,15 +97,6 @@ a:hover {
 }
 
 /* Login */
-.login_img {
-	height: 500px;
-	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
-
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-}
-
 .carousel-item {
   height: 100vh;
   padding-top: 45px;
@@ -103,37 +108,96 @@ a:hover {
   background-repeat: no-repeat;
   text-align: center;
   color: #fff;
-}
-
-.carousel-item {
-  background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
+  background-image: radial-gradient(circle, transparent 0%, #233B4D 100%), url(login1.jpg);
 }
 
 .card {
 	width: 360px;
 	height: 460px;
 	margin: 0 auto;
+	border-radius: 20px !important;
 }
 
 .card-title {
 	text-align: center;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	font-weight: 700;
 }
 
-/*.form-control {
+#example-text-input {
+	margin-top: 15px;
 	width: 320px;
-	height: 40px;
-	margin-top: 10px;
+	height: 48px;
 }
-*/
 
-.form-check-input {
-	margin-left: 3px;
-	margin-top: 10px;
+.login_form {
+	display: flex;
+	flex-flow: row wrap;
+	margin-bottom: 13px;
+	margin-left: 20px;
+}
+
+input.form-check-input {
+	margin-left: -15px;
+	margin-top: 5px;
 }
 
 .login_checkbox {
-	margin-left: 20px;
-	padding-top: 150px;
+	font-size: 14px;
+	color: #9AA0A2;
 }
+
+.btn-primary {
+	background-color: #3b5998;
+  border-color: #3b5998;
+}
+
+.btn.btn-warning.sign_in, .btn.btn-primary {
+	padding: 1rem;
+}
+
+.line-text {
+	color: #9AA0A2;
+	text-align: center;
+	position: relative;
+	z-index: 2;
+}
+
+.line-text:after{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0.1px;
+	right: 0.1px;
+	border-top: solid 0.1px #9AA0A2;
+	z-index: -1;
+}
+
+.line-center {
+	padding: 3px;
+	margin: 5px 0;
+	background: #fff;
+	display: inline-block;
+	font-size: 12px;
+}
+
+.account_div {
+	margin-top: 30px;
+}
+
+.bottom_line {
+	color: #9AA0A2;
+	font-size: 12px;
+}
+
+.make_account {
+	color: #2868D0;
+}
+/*.login_img {
+	height: 500px;
+	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+*/

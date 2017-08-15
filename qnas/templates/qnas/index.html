@@ -26,12 +26,12 @@ Aplus
 <body>
 	<!-- Header -->
 	<header class="header">
-		<nav class="navbar navbar-toggleable-md navbar-light navbar navbar-inverse bg-inverse">
+		<nav class="navbar navbar-toggleable-md navbar-light navbar-inverse bg-inverse">
 		 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		  	<span class="fa fa-bars"></span>
 		  </button>
 		  <h1 class="brand">
-		  	<a class="navbar-brand" href="#" lang="en">Aplus</a>
+		  	<a class="navbar-brand" href="/q/index" lang="en">Aplus</a>
 		  </h1>
 		  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 		    <ul class="navbar-nav">
@@ -47,26 +47,24 @@ Aplus
 	<section class="search">
 	  <form>
 	    <div class="input-group">
-		    <input type="text" class="form-control" placeholder="학교 검색" aria-describedby="btnGroupAddon">
+		    <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
 		  	<span class="input-group-addon" id="btnGroupAddon">
 		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
 		  	</span>
 		  </div>
 	  </form>
 
-	    <a href="#"><span class="name">광운대</span></a>
-	    <a href="#"><span class="name">덕성여대</span></a>
-	    <a href="#"><span class="name">서울대</span></a>
-	    <a href="#"><span class="name">연세대</span></a>
-	    <a href="#"><span class="name">숙명여대</span></a>
-	    <a href="#"><span class="name">고려대</span></a>
-	    <a href="#"><span class="name">이화여대</span></a>
+	  
+	    <a href="#"><span class="name">국어국문학과</span></a>
+	    <a href="#"><span class="name">컴퓨터공학과</span></a>
+	    <a href="#"><span class="name">화학공학과</span></a>
+
 	</section>
 
 	<section class="search">
 	  <form>
 	    <div class="input-group">
-		    <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
+		    <input type="text" class="form-control" placeholder="과목 검색" aria-describedby="btnGroupAddon">
 		  	<span class="input-group-addon" id="btnGroupAddon">
 		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
 		  	</span>
@@ -76,41 +74,61 @@ Aplus
 	    <a href="#"><span class="name">국어국문학과</span></a>
 	    <a href="#"><span class="name">컴퓨터공학과</span></a>
 	    <a href="#"><span class="name">화학공학과</span></a>
+
 	</section>
 
 	<section class="search2">
 		<div class="input-group">
-	    <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
-	  	<span class="input-group-addon" id="btnGroupAddon">
-	  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-	  	</span>
-	  </div>
-
-  	<ul class="nav nav-tabs">
+		    <input type="text" class="form-control" placeholder="질문 검색" aria-describedby="btnGroupAddon">
+		  	<span class="input-group-addon" id="btnGroupAddon">
+		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+		  	</span>
+	    </div>
+	  	
+	  <ul class="nav nav-tabs" id="myTab" role="tablist">
 		  <li class="nav-item">
-		    <a class="nav-link active" href="#">최신</a>
+		    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">최신</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="#">인기</a>
+		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">인기</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="#">답변필요</a>
+		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">답변필요</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" href="#">태그선택</a>
+		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">태그선택</a>
 		  </li>
+		 
 		</ul>
+		<div class="tab-content" id="myTabContent">
+		  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+		  	{% for post in posts %}
+				<h1><a href="/q/read/{{post.id}}">{{post.title}}</a></h1>
+				<p>{{post.major}}</p>
+				<p>{{post.course}}</p>
+				<p>{{post.content}}</p>
+
+			{% endfor %}
+		  </div>
+		  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+		  <div class="tab-pane fade" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab">...</div>
+		  <div class="tab-pane fade" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">...</div>
+		</div>
 
 	</section>
+</body>
 
+<!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
+<!-- 
 	<h1>질문게시판</h1>
     <a href="/q/create">글 작성</a>
     <a href="/admin/qnas/major/add/">전공 추가</a>
     <a href="/admin/qnas/course/add/">과목 추가</a>
-
 </body>
-
 <select name="major" onchange="if (this.value) window.location.href = '/qnas/' + this.value">
   {% for major in majors %}
     {% if major.name == major_name %}
@@ -120,7 +138,6 @@ Aplus
     {% endif %}
   {% endfor %}
 </select>
-
 <select name="course" onchange="if (this.value) window.location.href = '/qnas/{{major_name}}/' + this.value">
   {% for course in courses %}
     {% if course.name == course_name %}
@@ -130,12 +147,10 @@ Aplus
     {% endif %}
   {% endfor %}
 </select>
-
 {% for post in posts %}
 <h1><a href="/q/read/{{post.id}}">{{post.title}}</a></h1>
 <p>{{post.major}}</p>
 <p>{{post.course}}</p>
 <p>{{post.content}}</p>
-
 {% endfor %}
-{% endblock %}
+{% endblock %} -->
