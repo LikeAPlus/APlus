@@ -198,4 +198,8 @@ ENV/
 # mkdocs documentation
 /site
 
+
+.idea/
+
+
 # End of https://www.gitignore.io/api/macos,django,python,pycharm
