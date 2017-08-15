@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 
 from .models import Major, Course, Post, Comment
@@ -24,14 +24,18 @@ def index(request, major_name = '', course_name = ''):
     context = {'posts': posts, 'majors': majors, 'courses': courses, 'major_name': major_name, 'course_name': course_name}
     return render(request, 'qnas/index.html', context)
 
+
 def create(request):
+
     majors = Major.objects.all()
     courses = Course.objects.all()
     context = {'majors': majors, 'courses': courses}
 
     return render(request, 'qnas/create.html', context)
 
+
 def create_question(request):
+
     major = Major.objects.get(id = request.POST['major'])
     course = Course.objects.get(id = request.POST['course'])
     title = request.POST['title']
@@ -40,7 +44,8 @@ def create_question(request):
     post = Post(major = major, course = course, title = title, content = content)
     post.save()
 
-    return HttpResponseRedirect("/q/read/{}".format(post.id))
+    # return HttpResponseRedirect("/q/read/{}".format(post.id))
+    return redirect('qnas:read', post.id)
 
 def delete_question(request):
     post = Post.objects.get(id = request.POST['post_id'])
@@ -70,3 +75,6 @@ def delete_answer(request):
     comment.delete()
 
     return HttpResponseRedirect("/q/read/{}".format(post_id))
+
+
+
