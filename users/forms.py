@@ -15,6 +15,16 @@ class SignupForm(UserCreationForm):
 
 
 class SigninForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs = {
+            'class': 'form-control'
+
+        }
+        self.fields['password'].widget.attrs = {
+            'class': 'form-control'
+        }
+
     username = UsernameField(
         max_length=254,
         widget=forms.TextInput(attrs={
