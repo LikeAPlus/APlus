@@ -30,9 +30,3 @@ def sign_in(request):
         authentication_form=SigninForm,
         template_name='users/sign_in.html',
     )
-
-def create(request):
-    return render(request, 'users/create.html')
-
-def create_user(request):
-    return render(request, 'users/create.html')
