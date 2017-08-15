@@ -20,7 +20,10 @@ def index(request, major_name = '', course_name = ''):
             posts = Post.objects.order_by("id").reverse()
 
     majors = Major.objects.all()
-    courses = Course.objects.all()
+    if major_name != '':
+        courses = Course.objects.filter(major=major)
+    else:
+        courses = ''
     context = {'posts': posts, 'majors': majors, 'courses': courses, 'major_name': major_name, 'course_name': course_name}
     return render(request, 'qnas/index.html', context)
 

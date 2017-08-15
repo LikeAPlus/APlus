@@ -54,11 +54,13 @@ Aplus
 		  </div>
 	  </form>
 
-	  
-	    <a href="#"><span class="name">국어국문학과</span></a>
-	    <a href="#"><span class="name">컴퓨터공학과</span></a>
-	    <a href="#"><span class="name">화학공학과</span></a>
-
+      {% for major in majors %}
+        {% if major.name == major_name %}
+            <a href="/{{major.name}}"><span class="name">{{major.name}}</span></a>
+        {% else %}
+            <a href="/{{major.name}}"><span class="name">{{major.name}}</span></a>
+        {% endif %}
+      {% endfor %}
 	</section>
 
 	<section class="search">
@@ -71,13 +73,18 @@ Aplus
 		  </div>
 	  </form>
 
-	    <a href="#"><span class="name">국어국문학과</span></a>
-	    <a href="#"><span class="name">컴퓨터공학과</span></a>
-	    <a href="#"><span class="name">화학공학과</span></a>
-
+    {% if major_name != "" %}
+      {% for course in courses %}
+        {% if course.name == course_name %}
+            <a href="/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
+        {% else %}
+            <a href="/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
 	</section>
 
-	<section class="search2">
+	<section class="search2 col-md-7">
 		<div class="input-group">
 		    <input type="text" class="form-control" placeholder="질문 검색" aria-describedby="btnGroupAddon">
 		  	<span class="input-group-addon" id="btnGroupAddon">
