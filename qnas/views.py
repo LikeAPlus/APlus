@@ -35,7 +35,7 @@ def create(request):
         title = request.POST['title']
         content = request.POST['content']
 
-        post = Post(major=major, course=course, title=title, content=content)
+        post = Post(user=request.user, major=major, course=course, title=title, content=content)
         post.save()
 
         return redirect('qnas:read', post.id)
@@ -64,7 +64,7 @@ def create_answer(request):
     post = Post.objects.get(id = request.POST['post_id'])
     content = request.POST['content']
 
-    comment = Comment(post = post, content = content)
+    comment = Comment(user=request.user, post = post, content = content)
     comment.save()
 
     return redirect('qnas:read', post.id)
