@@ -9,7 +9,7 @@ def root(request):
 
 urlpatterns = [
     url(r'^$', root, name='root'),
-    url(r'^qnas/', include('qnas.urls', namespace='qnas')),
     url(r'^users/', include('users.urls')),
+    url(r'^qnas/', include('qnas.urls', namespace='qnas')),
     url(r'^admin/', admin.site.urls),
 ]

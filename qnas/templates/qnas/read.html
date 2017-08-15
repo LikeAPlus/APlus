@@ -13,7 +13,7 @@
 <hr>
 {% for comment in comments %}
   <p>{{comment.content}}</p>
-  <form action="/a/delete_answer" method="post" enctype="multipart/form-data">
+  <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name="post_id" value="{{post.id}}">
     <input type="hidden" name="comment_id" value="{{comment.id}}">
@@ -21,7 +21,7 @@
   </form>
 {% endfor %}
 
-<form action="/a/create_answer" method="post" enctype="multipart/form-data">
+<form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <input type="hidden" name="post_id" value="{{post.id}}">
   <label>내용</label>
@@ -32,7 +32,7 @@
 </form>
 <br>
 
-<form action="/q/delete_question" method="post" enctype="multipart/form-data">
+<form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <input type="hidden" name="post_id" value="{{post.id}}">
   <button type="submit">글 삭제</button>

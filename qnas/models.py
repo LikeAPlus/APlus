@@ -1,24 +1,28 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.conf import settings
 from django.db import models
 
 # Create your models here.
 class Major(models.Model):
     name = models.CharField(max_length=20)
+    e_name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
 
 class Course(models.Model):
-    name = models.CharField(max_length=20)
     major = models.ForeignKey(Major)
+    name = models.CharField(max_length=20)
+    e_name = models.CharField(max_length=20)
     professor = models.CharField(max_length=10)
+
 
     def __str__(self):
         return self.name
 
 class Post(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     major = models.ForeignKey(Major)
     course = models.ForeignKey(Course)
     title = models.CharField(max_length=123)
@@ -29,6 +33,7 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     post = models.ForeignKey(Post)
     content = models.TextField()
 
