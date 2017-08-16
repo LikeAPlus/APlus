@@ -40,3 +40,16 @@ class SigninForm(AuthenticationForm):
         strip=False,
         required=True,
         widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs = {
+            'class' : 'form-control',
+            'placeholder' : 'Username',
+            'id' : 'example-text-input'
+        }
+        self.fields['password'].widget.attrs = {
+            'class' : 'form-control',
+            'placeholder' : 'Password',
+            'id' : 'example-text-input'
+        }

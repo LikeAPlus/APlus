@@ -77,6 +77,57 @@ Aplus
 		  	</span>
 	    </div>
 
+	    <div class="input-group">
+	      <input type="text" class="form-control" data-toggle="modal" data-target="#myModal" placeholder="새 글을 작성해주세요!">
+	      <span class="input-group-btn">
+	        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#myModal">
+	        	<i class="fa fa-pencil" aria-hidden="true"></i>
+	        </button>
+	      </span>
+	    </div>
+
+	    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        ...
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<script>
+	    (function(){
+	    	$('#myModal').modal('show');
+	    })();
+    </script>
+<!--
+	    <form class="write">
+			<div class="form-group">
+				<input name = "title" placeholder="title" class="title">
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+
+				<label class="btn btn-default">
+	  			UPLOAD<input type="file" hidden>
+				</label>
+
+				<label class="btn btn-default submit">
+	  			UPLOAD<input type="submit" hidden>
+				</label>
+	 -->
+  			</div>
+	    </form>
+
 	  <ul class="nav nav-tabs" id="myTab" role="tablist">
 		  <li class="nav-item">
 		    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">최신</a>
