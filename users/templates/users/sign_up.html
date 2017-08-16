@@ -1,4 +1,4 @@
-{% extends "qnas/layout.html" %}
+{% extends "users/layout.html" %}
 
 {% load static %}
 
@@ -22,7 +22,8 @@
                             <p>{{ field.errors }}</p>
                         {% endfor %}
                     </div>
-                    <input type="submit" class="btn btn-warning sign_in" style="width:100%" value="회원가입">
+                    <input type="submit" class="btn btn-warning sign_in" style="width:100%;
+    margin-bottom: 50px;" value="회원가입">
                 </div>
             </div>
         </form>

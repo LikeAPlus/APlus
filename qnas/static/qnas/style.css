@@ -81,9 +81,10 @@ a.nav-link {
 }
 
 .search2 {
-	width: 1000px;
-	float: left;
-	margin: 20px;
+    width: 800px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .nav.nav-tabs {
@@ -271,12 +272,12 @@ input.form-check-input {
 
 /*.login_img {
 	height: 500px;
-/*	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);*/
+	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-}
-*/
+}*/
+
 
 /* Read */
 .card.read {
