@@ -21,9 +21,9 @@ APlus
 
       {% for major in majors %}
         {% if major.name == major_name %}
-            <a href="/qnas/{{major.name}}"><span class="name">{{major.name}}</span></a>
+            <a href="/qnas/{{major.e_name}}"><span class="name">{{major.name}}</span></a>
         {% else %}
-            <a href="/qnas/{{major.name}}"><span class="name">{{major.name}}</span></a>
+            <a href="/qnas/{{major.e_name}}"><span class="name">{{major.name}}</span></a>
         {% endif %}
       {% endfor %}
 	</section>
@@ -41,9 +41,9 @@ APlus
     {% if major_name != "" %}
       {% for course in courses %}
         {% if course.name == course_name %}
-            <a href="/qnas/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
+            <a href="/qnas/{{major_name}}/{{course.e_name}}"><span class="name">{{course.name}}</span></a>
         {% else %}
-            <a href="/qnas/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
+            <a href="/qnas/{{major_name}}/{{course.e_name}}"><span class="name">{{course.name}}</span></a>
         {% endif %}
       {% endfor %}
     {% endif %}

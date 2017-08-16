@@ -10,11 +10,11 @@ from .models import Major, Course, Post, Comment
 # Create your views here.
 def index(request, major_name='', course_name=''):
     if major_name != '' and course_name != '':
-        major = Major.objects.get(name=major_name)
-        course = Course.objects.get(name=course_name)
+        major = Major.objects.get(e_name=major_name)
+        course = Course.objects.get(e_name=course_name)
         posts = Post.objects.filter(major=major, course=course)
     elif major_name != '':
-        major = Major.objects.get(name=major_name)
+        major = Major.objects.get(e_name=major_name)
         posts = Post.objects.filter(major=major)
     else:
         posts = Post.objects.order_by("id").reverse()
