@@ -14,18 +14,17 @@ import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-# with open("secrets.json") as f:
-#     secrets = json.loads(f.read())
-#
-#
-#
-# # Keep secret keys in secrets.json
-# def get_secret(setting, secrets=secrets):
-#     try:
-#         return secrets[setting]
-#     except KeyError:
-#         error_msg = "Set the {0} environment variable".format(setting)
-#         raise ImproperlyConfigured(error_msg)
+with open("secrets.json") as f:
+    secrets = json.loads(f.read())
+
+
+# Keep secret keys in secrets.json
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 
 
@@ -102,14 +101,14 @@ WSGI_APPLICATION = 'APlus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
-# DATABASES = get_secret('DBConfig')
+DATABASES = get_secret('DBConfig')
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
