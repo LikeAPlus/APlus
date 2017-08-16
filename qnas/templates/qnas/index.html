@@ -84,18 +84,15 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <form action="{% url "qnas:create" %}" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             {% csrf_token %}
                             <div>
-                                <label>제목</label>
-                                <div>
-                                    <input name="title">
-                                </div>
+                                <input name="title" class="form-control">
                             </div>
                             <div>
-                                <label>내용</label>
-                                <textarea name="content" rows="3"></textarea>
+                                <textarea class="form-control" name="content" placeholder="글을 작성해주세요!"></textarea>
                             </div>
 
                             <select id="majorselect" name="major" onchange="selectMajor();">
@@ -113,14 +110,15 @@
                               <input type="file" name="image" accept="image/*">
                             </div> -->
                         </div>
-                        <div class="modal-footer">
-                            <div class="modal_img">
-                                <img src="/static/qnas/hashtag.png" alt="hashtag" style="width:15px"
-                                     class="modal_hashtag">
-                                <img src="/static/qnas/paperclip.png" alt="paperclip" style="width:15px"
-                                     class="modal_paperclip">
+                        <div class="modal-footer d-flex justify-content-start" style="height: 50px;width: 100%">
+
+                            <div class="p-2"><img src="/static/qnas/hashtag.png" alt="hashtag" style="width:15px"
+                                                  class="modal_hashtag"></div>
+                            <div class="p-2"><img src="/static/qnas/paperclip.png" alt="paperclip" style="width:15px"
+                                                  class="modal_paperclip"></div>
+                            <div class="ml-auto p-2">
+                                <button type="submit" class="btn btn-warning">게시</button>
                             </div>
-                            <button type="submit" class="btn btn-warning">게시</button>
                         </div>
                     </form>
                 </div>
@@ -150,7 +148,8 @@
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                   aria-controls="home"
                    aria-expanded="true">최신</a>
             </li>
             <li class="nav-item">
