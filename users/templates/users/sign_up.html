@@ -1,17 +1,34 @@
+{% extends "qnas/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    APlus
+{% endblock %}
 
 {% block content %}
 
     <form action="" method="post">
         {% csrf_token %}
 
-
-        {% for field in form.visible_fields %}
-            <p>{{ field }}</p>
-            <p>{{ field.errors }}</p>
-        {% endfor %}
-
-
-        <p><input type="submit"></p>
+        <section id="cover">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <section class="carousel-item active">
+                    <div class="card">
+                        <div class="card-block">
+                            <h3 class="card-title">회원가입</h3>
+                            <div>
+                                {% for field in form.visible_fields %}
+                                    <p>{{ field }}</p>
+                                    <p>{{ field.errors }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="submit" class="btn btn-warning sign_in" style="width:100%" value="회원가입">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
 
     </form>
 

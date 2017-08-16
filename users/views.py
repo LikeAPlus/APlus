@@ -1,8 +1,11 @@
-from django.conf import settings
+from django.contrib.auth import logout
+
 from django.shortcuts import render, redirect
+from django.conf import settings
 from django.contrib.auth.views import login as auth_login
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.templatetags.socialaccount import get_providers
+
 
 from .forms import SignupForm, SigninForm
 
@@ -15,10 +18,9 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
 
-            return redirect('/')  # default : '/accounts/login'
+            return redirect('/qnas')  # default : '/accounts/login'
     else:
         form = SignupForm()
-
 
     ctx = {
         'form': form,
@@ -41,4 +43,6 @@ def sign_in(request):
                       extra_context={'providers': providers})
 
 
-
+def log_out(request):
+    logout(request)
+    return redirect('/')
