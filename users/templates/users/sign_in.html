@@ -1,73 +1,74 @@
 {% extends "qnas/layout.html" %}
+{% load socialaccount %}
 
 {% load static %}
 
 {% block title %}
-Aplus
+    APlus
 {% endblock %}
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title lang="ko"></title>
-  <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {#        <section id="cover">#}
+    {#            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">#}
+    <!-- <div class="carousel-inner" role="listbox"> -->
+    <section class="carousel-item active">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-block">
+                    <h3 class="card-title">로그인</h3>
+                    <div>
+                        {% for error in form.non_field_errors %}
+                            <script type="text/javascript">
+                                alert('{{ error }}')
+                            </script>
+                        {% endfor %}
 
-  <!-- bootstrap css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <!-- your custom css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'qnas/style.css' %}" />
-</head>
-<body>
-  <!-- Header -->
-    <header class="header">
-      <nav class="navbar fixed-top navbar-toggleable-md">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="fa fa-bars"></span>
-        </button>
-        <h1 class="brand">
-          <a class="navbar-brand" href="#" lang="en">Aplus</a>
-        </h1>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link px-lg-4" href="/q/login" lang="en"><button type="button" class="btn btn-warning">login</button> <span class="sr-only">(현재 페이지)</span></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-  <!-- Login -->
+                        {% for field in form.visible_fields %}
+                            {{ field }}
+                            {{ field.errors }}
+                        {% endfor %}
+                    </div>
+                    <div class="login_form">
 
-   <section id="cover">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-     <!-- <div class="carousel-inner" role="listbox"> -->
-        <section class="carousel-item active">
-           <div class="card">
-            <div class="card-block">
-              <h3 class="card-title">로그인</h3>
-                <div>
-                  <input class="form-control" type="text" placeholder="이메일" id="example-text-input">
+                    </div>
+                    <button class="btn btn-warning sign_in" style="width:100%">로그인</button>
+                    <div class="line-text">
+                        <h6 class="line-center">또는</h6>
+                    </div>
+                    {% for provider in providers %}
+                        {% if provider.social_app %}
+                            <button class="btn btn-primary sign_in" style="width:100%"
+                                    onclick="location.href='{% provider_login_url provider.id %}'">페이스북으로 로그인
+                            </button>
+
+                        {% else %}
+                            <button class="btn btn-primary" style="width:100%">
+                                Provider {{ provider.name }} 설정이 필요합니다.
+                            </button>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    <div class="account_div">
+                        <h6 class="bottom_line">
+                            계정이 없나요?
+                            <a href="{% url 'signup' %}" class="make_account">계정만들기</a>
+                        </h6>
+                        <h6 class="bottom_line">
+                            비밀번호가 기억나지 않으세요?
+                            <a href="#" class="make_account">비밀번호 재설정</a>
+                        </h6>
+                    </div>
                 </div>
-                <div>
-                  <input class="form-control" type="text" placeholder="비밀번호" id="example-text-input">
-                </div>
-                <input type="checkbox" class="form-check-input">
-                <span class="login_checkbox">로그인 상태 유지하기</span>
-                <br>
-                <a href="#"><button type="button" class="btn btn-warning">로그인</button></a>
+
+                <!--  <input type="submit"> -->
+                {#                    </div>#}
+                {#                </section>#}
             </div>
-          </div>
-        </section>
-    </div>
+        </form>
+    </section>
 
-  </section>
-       
-
-</body>
 {% endblock %}
