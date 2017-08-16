@@ -1,5 +1,5 @@
 from django.contrib.auth import logout
-from django.contrib.auth.views import login as auth_login
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import login as auth_login
 from allauth.socialaccount.models import SocialApp
@@ -39,8 +39,6 @@ def sign_in(request):
                       authentication_form=SigninForm,
                       template_name='users/sign_in.html',
                       extra_context={'providers': providers})
-
-
 
 
 def log_out(request):
