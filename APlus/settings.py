@@ -162,3 +162,4 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'auth.User'
 
 LOGIN_REDIRECT_URL = '/qnas'
+
