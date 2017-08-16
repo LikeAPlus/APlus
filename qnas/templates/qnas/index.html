@@ -120,20 +120,6 @@ APlus
 	    	$('#myModal').modal('show');
 	    })();
     </script>
-<!--
-	    <form class="write">
-			<div class="form-group">
-				<input name = "title" placeholder="title" class="title">
-    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-
-				<label class="btn btn-default">
-	  			UPLOAD<input type="file" hidden>
-				</label>
-
-				<label class="btn btn-default submit">
-	  			UPLOAD<input type="submit" hidden>
-				</label>
-	 -->
   			</div>
 	    </form>
 
@@ -156,10 +142,10 @@ APlus
 		  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 		  	{% for post in posts %}
 				<h1><a href="/qnas/read/{{post.id}}">{{post.title}}</a></h1>
-                <p>{{ post.user }}</p>
-				<p>{{post.major}}</p>
-				<p>{{post.course}}</p>
-				<p>{{post.content}}</p>
+
+				<p>{{post.major}} / {{post.course}}</p>
+                <p>writer: {{ post.user }}</p>
+				<p>content: {{post.content}}</p>
 
 			{% endfor %}
 		  </div>
