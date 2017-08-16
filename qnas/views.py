@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Major, Course, Post, Comment
@@ -28,6 +29,19 @@ def index(request, major_name='', course_name=''):
     context = {'posts': posts, 'majors': majors, 'courses': courses, 'major_name': major_name,
                'course_name': course_name}
     return render(request, 'qnas/index.html', context)
+
+
+def read_courses(request, major_name):
+    major = Major.objects.get(name=major_name)
+    courses = Course.objects.filter(major=major)
+    courses_info = []
+    for c in courses:
+        course = {}
+        course['id'] = c.id
+        course['name'] = c.name
+        courses_info.append(course)
+
+    return JsonResponse({'courses': courses_info})
 
 
 @login_required(login_url='/users/signin/')
