@@ -32,7 +32,6 @@ from django.core.exceptions import ImproperlyConfigured
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -44,7 +43,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,8 +52,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.kakao',
+    # 'allauth.socialaccount.providers.naver',
+
+
     'qnas',
-    'users'
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -90,7 +99,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'APlus.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -121,6 +129,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+ 'django.contrib.auth.backends.ModelBackend', # 기본 인증 백엔드
+ 'allauth.account.auth_backends.AuthenticationBackend', # 추가
+]
+
+SITE_ID = 1
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -135,14 +154,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
 
-
-
 AUTH_USER_MODEL = 'auth.User'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/qnas'
+

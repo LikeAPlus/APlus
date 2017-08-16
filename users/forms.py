@@ -4,14 +4,25 @@ from django.contrib.auth.forms import UsernameField
 from django.contrib.auth.models import User
 
 
-
 class SignupForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['username'].widget.attrs['placeholder'] = 'Username'
-        self.fields['password1'].widget.attrs['placeholder'] = 'Password'
-        self.fields['password2'].widget.attrs['placeholder'] = 'Check Password'
+        self.fields['username'].widget.attrs = {
+            'class': 'form-control',
+            'placeholder': 'Username',
+            'id': 'example-text-input'
+        }
+        self.fields['password1'].widget.attrs = {
+            'class': 'form-control',
+            'placeholder': 'Password',
+            'id': 'example-text-input'
+        }
+        self.fields['password2'].widget.attrs = {
+            'class': 'form-control',
+            'placeholder': 'Check Password',
+            'id': 'example-text-input'
+        }
 
 
 class SigninForm(AuthenticationForm):
@@ -19,12 +30,13 @@ class SigninForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs = {
             'class': 'form-control',
-            'placeholder': 'USERNAME'
-
+            'placeholder': 'Username',
+            'id': 'example-text-input'
         }
         self.fields['password'].widget.attrs = {
             'class': 'form-control',
-            'placeholder': 'PASSWORD'
+            'placeholder': 'Password',
+            'id': 'example-text-input'
         }
 
     username = UsernameField(
@@ -40,16 +52,3 @@ class SigninForm(AuthenticationForm):
         strip=False,
         required=True,
         widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs = {
-            'class' : 'form-control',
-            'placeholder' : 'Username',
-            'id' : 'example-text-input'
-        }
-        self.fields['password'].widget.attrs = {
-            'class' : 'form-control',
-            'placeholder' : 'Password',
-            'id' : 'example-text-input'
-        }
