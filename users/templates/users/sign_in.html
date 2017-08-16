@@ -4,79 +4,71 @@
 {% load static %}
 
 {% block title %}
-APlus
+    APlus
 {% endblock %}
 
 {% block content %}
 
-  <form action="" method="post">
-    {% csrf_token %}
-    <section id="cover">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <!-- <div class="carousel-inner" role="listbox"> -->
-            <section class="carousel-item active">
-                <div class="card">
-                    <div class="card-block">
-
-                        <h3 class="card-title">로그인</h3>
-                        <div>
-                            {% for error in form.non_field_errors %}
-                                <script type="text/javascript">
+    {#        <section id="cover">#}
+    {#            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">#}
+    <!-- <div class="carousel-inner" role="listbox"> -->
+    <section class="carousel-item active">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-block">
+                    <h3 class="card-title">로그인</h3>
+                    <div>
+                        {% for error in form.non_field_errors %}
+                            <script type="text/javascript">
                                 alert('{{ error }}')
-                                </script>
+                            </script>
+                        {% endfor %}
 
-
-
-                            {% endfor %}
-
-                            {% for field in form.visible_fields %}
-                                {{ field }}
-                                {{ field.errors }}
-                            {% endfor %}
-                        </div>
-                        <div class="login_form">
-
-                        </div>
-                        <button class="btn btn-warning sign_in" style="width:100%">로그인</button>
-                        <div class="line-text">
-                            <h6 class="line-center">또는</h6>
-                        </div>
-                        {% for provider in providers %}
-                {% if provider.social_app %}
-                    <button class="btn btn-primary" style="width:100%" onclick="location.href='{% provider_login_url provider.id %}'">페이스북으로 로그인</button>
-
-                {% else %}
-                    <button class="btn btn-primary" style="width:100%">
-                    Provider {{ provider.name }} 설정이 필요합니다.
-                    </button>
-
-                {% endif %}
-
-        {% endfor %}
-
-                        <div class="account_div">
-                            <h6 class="bottom_line">
-                                계정이 없나요?
-                                <a href="{% url 'signup' %}" class="make_account">계정만들기</a>
-                            </h6>
-                            <h6 class="bottom_line">
-                                비밀번호가 기억나지 않으세요?
-                                <a href="#" class="make_account">비밀번호 재설정</a>
-                            </h6>
-                        </div>
+                        {% for field in form.visible_fields %}
+                            {{ field }}
+                            {{ field.errors }}
+                        {% endfor %}
                     </div>
+                    <div class="login_form">
 
-                    <!--  <input type="submit"> -->
+                    </div>
+                    <button class="btn btn-warning sign_in" style="width:100%">로그인</button>
+                    <div class="line-text">
+                        <h6 class="line-center">또는</h6>
+                    </div>
+                    {% for provider in providers %}
+                        {% if provider.social_app %}
+                            <button class="btn btn-primary sign_in" style="width:100%"
+                                    onclick="location.href='{% provider_login_url provider.id %}'">페이스북으로 로그인
+                            </button>
+
+                        {% else %}
+                            <button class="btn btn-primary" style="width:100%">
+                                Provider {{ provider.name }} 설정이 필요합니다.
+                            </button>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    <div class="account_div">
+                        <h6 class="bottom_line">
+                            계정이 없나요?
+                            <a href="{% url 'signup' %}" class="make_account">계정만들기</a>
+                        </h6>
+                        <h6 class="bottom_line">
+                            비밀번호가 기억나지 않으세요?
+                            <a href="#" class="make_account">비밀번호 재설정</a>
+                        </h6>
+                    </div>
                 </div>
-            </section>
-        </div>
 
+                <!--  <input type="submit"> -->
+                {#                    </div>#}
+                {#                </section>#}
+            </div>
+        </form>
     </section>
-</form>
-
-
-
-
-
 
 {% endblock %}

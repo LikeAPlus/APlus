@@ -8,28 +8,25 @@
 
 {% block content %}
 
-    <form action="" method="post">
-        {% csrf_token %}
-
-        <section id="cover">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                <section class="carousel-item active">
-                    <div class="card">
-                        <div class="card-block">
-                            <h3 class="card-title">회원가입</h3>
-                            <div>
-                                {% for field in form.visible_fields %}
-                                    <p>{{ field }}</p>
-                                    <p>{{ field.errors }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="submit" class="btn btn-warning sign_in" style="width:100%" value="회원가입">
-                        </div>
+    {#    <section id="cover">#}
+    {#        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">#}
+    <section class="carousel-item active">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-block">
+                    <h3 class="card-title">회원가입</h3>
+                    <div>
+                        {% for field in form.visible_fields %}
+                            <p>{{ field }}</p>
+                            <p>{{ field.errors }}</p>
+                        {% endfor %}
                     </div>
-                </section>
+                    <input type="submit" class="btn btn-warning sign_in" style="width:100%" value="회원가입">
+                </div>
             </div>
-        </section>
-
-    </form>
-
+        </form>
+    </section>
+    {#        </div>#}
+    {#    </section>#}
 {% endblock %}
