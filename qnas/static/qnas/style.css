@@ -275,3 +275,45 @@ input.form-check-input {
 }
 */
 
+
+
+/* Read */
+.card.read{
+	width: 1000px;
+	height: auto;
+	border-radius: 5px !important;
+}
+
+.card-title{
+	padding: 30px;
+	font-size: 40px;
+}
+
+.card-subtitle{
+	float:right;
+	padding-right: 30px;
+}
+
+.card-text{
+	padding: 40px;
+}
+
+.d-flex.justify-content-end{
+	padding: 30px;
+	border-bottom: 1px solid #d6d6d6;
+}
+
+.comment{
+	padding: 40px;
+}
+
+.card.comment{
+	width: 1000px;
+	height: auto;
+	border-radius: 5px !important;
+	margin-top: 50px;
+}
+
+
+
+

@@ -1,41 +1,129 @@
 {% extends "qnas/layout.html" %}
 
+{% load static %}
+
 {% block title %}
-{{post.title}}
+Aplus
+{% endblock %}
+
+{% block menu %}
+
+  <!-- Search -->
+  <section class="search">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
+        <span class="input-group-addon" id="btnGroupAddon">
+          <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+        </span>
+      </div>
+    </form>
+
+      {% for major in majors %}
+        {% if major.name == major_name %}
+            <a href="/qnas/{{major.name}}"><span class="name">{{major.name}}</span></a>
+        {% else %}
+            <a href="/qnas/{{major.name}}"><span class="name">{{major.name}}</span></a>
+        {% endif %}
+      {% endfor %}
+  </section>
+
+  <section class="search">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="과목 검색" aria-describedby="btnGroupAddon">
+        <span class="input-group-addon" id="btnGroupAddon">
+          <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+        </span>
+      </div>
+    </form>
+
+    {% if major_name != "" %}
+      {% for course in courses %}
+        {% if course.name == course_name %}
+            <a href="/qnas/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
+        {% else %}
+            <a href="/qnas/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </section>
 {% endblock %}
 
 {% block content %}
-<h1>{{post.title}}</h1>
-<p>{{post.major}}</p>
-<p>{{post.course}}</p>
-<p>{{post.content}}</p>
 
-<hr>
-{% for comment in comments %}
-  <p>{{comment.content}}</p>
-  <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="post_id" value="{{post.id}}">
-    <input type="hidden" name="comment_id" value="{{comment.id}}">
-    <button type="submit">댓글 삭제</button>
-  </form>
-{% endfor %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title lang="ko"></title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <input type="hidden" name="post_id" value="{{post.id}}">
-  <label>내용</label>
-  <div>
-    <input type="text" name="content">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- your custom css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'qnas/style.css' %}" />
+</head>
+<body>
+
+
+    
+  <section class="search2 col-md-7">
+   <div class="card read">
+    <div class="card-body">
+     <h3 class="card-title">{{post.title}}</h3>
+     <hr>
+      <h6 class="card-subtitle mb-2 text-muted">{{post.major}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{post.course}}</h6>
+      <p class="card-text">{{post.content}}</p>
+      <div class="d-flex justify-content-end">
+        <a href="#" class="card-link">목록</a>
+      </div>
+    
+      <div class="comment">
+        {% for comment in comments %}
+          <p>{{comment.content}}</p>
+          <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{post.id}}">
+            <input type="hidden" name="comment_id" value="{{comment.id}}">
+            <button type="submit">댓글 삭제</button>
+          </form>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-  <button type="submit">작성</button>
-</form>
-<br>
 
-<form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <input type="hidden" name="post_id" value="{{post.id}}">
-  <button type="submit">글 삭제</button>
-</form>
-<a href="/">목록</a>
-{% endblock %}
+
+
+      <div class="card comment">
+        <div class="card-body">
+          <p lcass="card-text">
+
+            <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value="{{post.id}}">
+              <label>내용</label>
+              <div>
+                <input type="text" name="content">
+              </div>
+              <button type="submit">작성</button>
+            </form>
+          <br>
+
+        <form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="post_id" value="{{post.id}}">
+          <button type="submit">글 삭제</button>
+        </form>
+       
+        {% endblock %}
+     
+
+        </div>
+      </div>
+    </section>
+</body>
