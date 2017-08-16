@@ -80,7 +80,7 @@ Aplus
       <h6 class="card-subtitle mb-2 text-muted">{{post.course}}</h6>
       <p class="card-text">{{post.content}}</p>
       <div class="d-flex justify-content-end">
-        <a href="#" class="card-link">목록</a>
+        <a href="/qnas" class="card-link">목록</a>
       </div>
     
       <div class="comment">
@@ -103,13 +103,14 @@ Aplus
         <div class="card-body">
           <p lcass="card-text">
 
+            
+
             <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <input type="hidden" name="post_id" value="{{post.id}}">
-              <label>내용</label>
-              <div>
-                <input type="text" name="content">
-              </div>
+              
+             
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content"></textarea>
               <button type="submit">작성</button>
             </form>
           <br>
