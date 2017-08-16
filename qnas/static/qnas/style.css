@@ -34,6 +34,10 @@ a:hover {
     text-decoration: none;
 }
 
+textarea{
+	border: 0;
+}
+
 /*.btn:hover {
 	text-decoration-color: initial
 }*/
@@ -296,10 +300,11 @@ input.form-check-input {
 
 .card-subtitle {
     float: right;
-    padding-right: 30px;
+    padding: 20px;
 }
 
 .card-text {
+	margin-top: 100px;
     padding: 40px;
 }
 
