@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 
+
 # Create your models here.
 class Major(models.Model):
     name = models.CharField(max_length=20)
@@ -11,15 +12,16 @@ class Major(models.Model):
     def __str__(self):
         return self.name
 
+
 class Course(models.Model):
     major = models.ForeignKey(Major)
     name = models.CharField(max_length=20)
     e_name = models.CharField(max_length=20)
     professor = models.CharField(max_length=10)
 
-
     def __str__(self):
         return self.name
+
 
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
@@ -34,6 +36,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
