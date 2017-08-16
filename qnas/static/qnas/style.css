@@ -34,6 +34,9 @@ a:hover {
 	text-decoration: none;
 }
 
+/*.btn:hover {
+	text-decoration-color: initial
+}*/
 /* Header */
 .navbar-toggler {
     font-size: 1rem;
@@ -49,11 +52,15 @@ a:hover {
 	color: #000;
 }
 
+a.navbar-brand {
+	color: #fff;
+}
+
 .navbar-brand {
     padding-left: 50px;
 }
 
-.a.nav-link {
+a.nav-link {
 	font-size: 0.73rem;
 	line-height: 1.82;
 	letter-spacing: 0.14em;
@@ -74,9 +81,14 @@ a:hover {
 }
 
 .search2 {
+
 	width: 1000px;
 	float: left;
 	margin: 20px;
+}
+
+.nav.nav-tabs {
+	margin-top: 20px;
 }
 
 .name {
@@ -89,7 +101,63 @@ a:hover {
     border-bottom: 1px solid #e3e3e3;
 }
 
+.form-group{
+	margin-top: 20px;
+	border: 1px solid #d6d6d6;
+}
+.title {
+	width: 993px;
+	border: none;
+	border-bottom: 1px solid #d6d6d6;
+	line-height: 2.3;
+}
+
+#exampleFormControlTextarea1{
+	border: none;
+	border-bottom: 1px solid #d6d6d6;
+}
+
+.form-control-file{
+	line-height: 2;
+}
+
+#exampleFormControlFile1{
+	width: 0;
+	height: 0;
+}
+
+
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    width: 20px;
+	height: 20px; 
+	background-size: contain;
+    background: url(attach.png);
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.btn.btn-default.submit{
+	float: right;
+}
+
 /* Login */
+
 .login_img {
 	height: 500px;
 	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
@@ -109,12 +177,11 @@ a:hover {
   background-repeat: no-repeat;
   text-align: center;
   color: #fff;
+
 }
 
 .carousel-item {
-
   background-image: radial-gradient(circle, transparent 0%, #233B4D 100%), url(login1.jpg);
-
 }
 
 .card {
@@ -126,24 +193,21 @@ a:hover {
 
 .card-title {
 	text-align: center;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	font-weight: 700;
 }
-
-
-#example-text-input{
-	margin-top: 20px;
-}
-
-.nav.nav-tabs {
-	margin-top: 20px;
-}
-
-
 #example-text-input {
 	margin-top: 15px;
 	width: 320px;
 	height: 48px;
+
+}
+
+.login_form {
+	display: flex;
+	flex-flow: row wrap;
+	margin-bottom: 13px;
+	margin-left: 20px;
 }
 
 input.form-check-input {
@@ -155,3 +219,59 @@ input.form-check-input {
 	font-size: 14px;
 	color: #9AA0A2;
 }
+
+.btn-primary {
+	background-color: #3b5998;
+  border-color: #3b5998;
+}
+
+.btn.btn-warning.sign_in, .btn.btn-primary {
+	padding: 1rem;
+}
+
+.line-text {
+	color: #9AA0A2;
+	text-align: center;
+	position: relative;
+	z-index: 2;
+}
+
+.line-text:after{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0.1px;
+	right: 0.1px;
+	border-top: solid 0.1px #9AA0A2;
+	z-index: -1;
+}
+
+.line-center {
+	padding: 3px;
+	margin: 5px 0;
+	background: #fff;
+	display: inline-block;
+	font-size: 12px;
+}
+
+.account_div {
+	margin-top: 30px;
+}
+
+.bottom_line {
+	color: #9AA0A2;
+	font-size: 12px;
+}
+
+.make_account {
+	color: #2868D0;
+}
+/*.login_img {
+	height: 500px;
+	background-image: linear-gradient(to bottom, transparent 0%, #fff 100%), url(login.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+*/
+
