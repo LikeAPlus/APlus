@@ -63,10 +63,14 @@
             {#        <a href="{% url 'qnas:create' %}">글 작성</a>#}
             <div class="input-group col-md-1">
             <span class="input-group-btn">
-	        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#myModal"
-                    onclick="selectMajor()">
-	        	<i class="fa fa-pencil" aria-hidden="true"> 글 작성</i>
-	        </button>
+                {% if course_name != '' %}
+                    <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#myModal">
+                {% else %}
+                    <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#myModal"
+                            onclick="selectMajor()">
+                {% endif %}
+                <i class="fa fa-pencil" aria-hidden="true"> 글 작성</i>
+                </button>
 	      </span>
             </div>
         </div>
@@ -97,13 +101,21 @@
 
                             <select id="majorselect" name="major" onchange="selectMajor();">
                                 {% for major in majors %}
-                                    <option value="{{ major.id }}">{{ major.name }}</option>
+                                    {% if major_name == major.e_name %}
+                                        <option value="{{ major.id }}" selected>{{ major.name }}</option>
+                                    {% else %}
+                                        <option value="{{ major.id }}">{{ major.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
 
                             <select id="courseselect" name="course">
                                 {% for course in courses %}
-                                    <option value="{{ course.id }}">{{ course.name }}</option>
+                                    {% if course_name == course.e_name %}
+                                        <option value="{{ course.id }}" selected>{{ course.name }}</option>
+                                    {% else %}
+                                        <option value="{{ course.id }}">{{ course.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                             <!-- <div class="form-group">
