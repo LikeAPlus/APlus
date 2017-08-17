@@ -132,8 +132,12 @@
                             <a href="#" onclick="addHash()" style="margin-left: 10px"><img
                                     src="/static/qnas/hashtag.png" alt="hashtag" style="width:15px"
                                     class="modal_hashtag"></a>
-                            <a href="#"><img src="/static/qnas/paperclip.png" alt="paperclip" style="width:15px"
-                                             class="modal_paperclip"></a>
+                            <label style="margin-bottom:0px;">
+                                <img src="/static/qnas/paperclip.png" alt="paperclip" style="width:15px"
+                                     class="modal_paperclip">
+                                <input type="file" name="image" style="display:none;" accept="image/*" onchange="$('#upload-file-info').html(this.files[0].name);">
+                            </label>
+                            <span id="upload-file-info"></span>
                             <div class="ml-auto p-2">
                                 <button type="submit" class="btn btn-warning border-radius-0">게시</button>
                             </div>
@@ -173,7 +177,7 @@
                 <br>
                 {% for post in posts %}
                     <div class="row">
-                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>조회</div>
+                        <div class="col-md-1 text-center">{{ post.view_count }}<br>조회</div>
                         <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
                         <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
                         <div class="col-md-9">
@@ -189,7 +193,7 @@
                 <br>
                 {% for post in  pop_posts %}
                     <div class="row">
-                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>조회</div>
+                        <div class="col-md-1 text-center">{{ post.view_count }}<br>조회</div>
                         <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
                         <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
                         <div class="col-md-9">
@@ -206,7 +210,7 @@
                 {% for post in posts %}
                     {% if post.comment_set.count == 0 %}
                         <div class="row">
-                            <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>조회</div>
+                            <div class="col-md-1 text-center">{{ post.view_count }}<br>조회</div>
                             <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
                             <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
                             <div class="col-md-9">

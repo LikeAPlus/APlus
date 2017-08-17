@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Major, Course, Post, Comment
 
+# from somewhere import handle_uploaded_file
 
 # Create your views here.
 def index(request, major_name='', course_name=''):
@@ -54,8 +55,11 @@ def create(request):
         course = Course.objects.get(id=request.POST['course'])
         title = request.POST['title']
         content = request.POST['content']
-
-        post = Post(user=request.user, major=major, course=course, title=title, content=content)
+        if request.POST['image'] != '':
+            image = request.FILES['image']
+            post = Post(user=request.user, major=major, course=course, title=title, content=content, image=image)
+        else:
+            post = Post(user=request.user, major=major, course=course, title=title, content=content)
         post.save()
 
         return redirect('qnas:read', post.id)
@@ -77,6 +81,8 @@ def delete_question(request):
 
 def read(request, post_id):
     post = Post.objects.get(id=post_id)
+    post.view_count += 1
+    post.save()
     comments = Comment.objects.filter(post=post)
     context = {'post': post, 'comments': comments}
 
