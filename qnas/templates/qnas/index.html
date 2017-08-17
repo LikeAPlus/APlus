@@ -3,177 +3,253 @@
 {% load static %}
 
 {% block title %}
-APlus
+    APlus
 {% endblock %}
 
 {% block menu %}
 
-	<!-- Search -->
-	<section class="search">
-	  <form>
-	    <div class="input-group">
-		    <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
-		  	<span class="input-group-addon" id="btnGroupAddon">
+    <!-- Search -->
+    <section class="search">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control border-left-0 border-radius-0" placeholder="학과 검색"
+                       aria-describedby="btnGroupAddon">
+                <span class="input-group-addon border-right-0 border-radius-0" id="btnGroupAddon">
 		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
 		  	</span>
-		  </div>
-	  </form>
+            </div>
+        </form>
 
-      {% for major in majors %}
-        {% if major.name == major_name %}
-            <a href="/qnas/{{major.e_name}}"><span class="name">{{major.name}}</span></a>
-        {% else %}
-            <a href="/qnas/{{major.e_name}}"><span class="name">{{major.name}}</span></a>
-        {% endif %}
-      {% endfor %}
-	</section>
+        {% for major in majors %}
+            {% if major.name == major_name %}
+                <a href="/qnas/{{ major.e_name }}"><span class="name">{{ major.name }}</span></a>
+            {% else %}
+                <a href="/qnas/{{ major.e_name }}"><span class="name">{{ major.name }}</span></a>
+            {% endif %}
+        {% endfor %}
+    </section>
 
-	<section class="search">
-	  <form>
-	    <div class="input-group">
-		    <input type="text" class="form-control" placeholder="과목 검색" aria-describedby="btnGroupAddon">
-		  	<span class="input-group-addon" id="btnGroupAddon">
+    <section class="search">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control border-left-0 border-radius-0" placeholder="과목 검색"
+                       aria-describedby="btnGroupAddon">
+                <span class="input-group-addon border-right-0 border-radius-0" id="btnGroupAddon">
 		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
 		  	</span>
-		  </div>
-	  </form>
+            </div>
+        </form>
 
-    {% if major_name != "" %}
-      {% for course in courses %}
-        {% if course.name == course_name %}
-            <a href="/qnas/{{major_name}}/{{course.e_name}}"><span class="name">{{course.name}}</span></a>
-        {% else %}
-            <a href="/qnas/{{major_name}}/{{course.e_name}}"><span class="name">{{course.name}}</span></a>
+        {% if major_name != "" %}
+            {% for course in courses %}
+                {% if course.name == course_name %}
+                    <a href="/qnas/{{ major_name }}/{{ course.e_name }}"><span class="name">{{ course.name }}</span></a>
+                {% else %}
+                    <a href="/qnas/{{ major_name }}/{{ course.e_name }}"><span class="name">{{ course.name }}</span></a>
+                {% endif %}
+            {% endfor %}
         {% endif %}
-      {% endfor %}
-    {% endif %}
-	</section>
+    </section>
 {% endblock %}
 
 {% block content %}
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title lang="ko"></title>
-  <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- bootstrap css -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<!-- your custom css -->
-	<link rel="stylesheet" type="text/css" href="{% static 'qnas/style.css' %}" />
-</head>
-<body>
-
-	<section class="search2 col-md-7">
-        <h1>질문게시판</h1>
-        <a href="{% url 'qnas:create' %}">글 작성</a>
-		<div class="input-group">
-		    <input type="text" class="form-control" placeholder="질문 검색" aria-describedby="btnGroupAddon">
-		  	<span class="input-group-addon" id="btnGroupAddon">
+    <section class="search2">
+        <div class="row">
+            <div class="input-group col-lg-10">
+                <input type="text" class="form-control border-radius-0" placeholder="질문 검색"
+                       aria-describedby="btnGroupAddon">
+                <span class="input-group-addon border-radius-0" id="btnGroupAddon">
 		  		<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
 		  	</span>
-	  </div>
+            </div>
+            <div class="input-group-btn col-lg-2">
+                {% if course_name != '' %}
+                    <button class="btn btn-secondary border-radius-0" type="button" data-toggle="modal"
+                            data-target="#myModal">
+                {% else %}
+                    <button class="btn btn-secondary border-radius-0" type="button" data-toggle="modal"
+                            data-target="#myModal"
+                            onclick="selectMajor()">
+                {% endif %}
+                <i class="fa fa-pencil" aria-hidden="true"> 글 작성</i>
+                </button>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            게시물 작성
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-	    <div class="input-group">
-	      <input type="text" class="form-control" data-toggle="modal" data-target="#myModal" placeholder="새 글을 작성해주세요!">
-	      <span class="input-group-btn">
-	        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#myModal">
-	        	<i class="fa fa-pencil" aria-hidden="true"></i>
-	        </button>
-	      </span>
-	    </div>
+                    <form action="{% url "qnas:create" %}" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            <div>
+                                <input name="title" class="form-control border-radius-0">
+                            </div>
+                            <div class="margin-top-10">
+                                <textarea class="form-control border-radius-0" id="content" name="content"
+                                          placeholder="글을 작성해주세요!"></textarea>
+                            </div>
+                            <div class="container row margin-top-10">
+                                <select class="form-control border-radius-0 col-md-3" id="majorselect" name="major"
+                                        onchange="selectMajor();">
+                                    {% for major in majors %}
+                                        {% if major_name == major.e_name %}
+                                            <option value="{{ major.id }}" selected>{{ major.name }}</option>
+                                        {% else %}
+                                            <option value="{{ major.id }}">{{ major.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
 
-			<!-- Modal -->
-	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">
-							<i class="fa fa-pencil" aria-hidden="true"></i>
-		        	게시물 작성
-		        </h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        ...
-		      </div>
-		      <div class="modal-footer">
-			      <div class="modal_img">
-							<img src="/static/qnas/hashtag.png" alt="hashtag" style="width:15px" class="modal_hashtag">
-							<img src="/static/qnas/paperclip.png" alt="paperclip" style="width:15px" class="modal_paperclip">
-						</div>
-						<button type="button" class="btn btn-warning">게시</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+                                <select class="form-control border-radius-0 col-md-3" id="courseselect" name="course"
+                                        style="margin-left: 10px">
+                                    {% for course in courses %}
+                                        {% if course_name == course.e_name %}
+                                            <option value="{{ course.id }}" selected>{{ course.name }}</option>
+                                        {% else %}
+                                            <option value="{{ course.id }}">{{ course.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
 
-		<script>
-	    (function(){
-	    	$('#myModal').modal('show');
-	    })();
+                                <!-- <div class="form-group">
+                                  <input type="file" name="image" accept="image/*">
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-start" style="height: 60px;width: 100%;">
+                            <a href="#" onclick="addHash()" style="margin-left: 10px"><img
+                                    src="/static/qnas/hashtag.png" alt="hashtag" style="width:15px"
+                                    class="modal_hashtag"></a>
+                            <a href="#"><img src="/static/qnas/paperclip.png" alt="paperclip" style="width:15px"
+                                             class="modal_paperclip"></a>
+                            <div class="ml-auto p-2">
+                                <button type="submit" class="btn btn-warning border-radius-0">게시</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function () {
+                $('#myModal').modal('show');
+            })();
+        </script>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
+                   aria-controls="home"
+                   aria-expanded="true">최신</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="popular-tab" data-toggle="tab" href="#popular" role="tab"
+                   aria-controls="profile">인기</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="needanswer-tab" data-toggle="tab" href="#needanswer" role="tab"
+                   aria-controls="profile">답변필요</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tag-tab" data-toggle="tab" href="#tag" role="tab"
+                   aria-controls="profile">태그선택</a>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="home-tab">
+                <br>
+                {% for post in posts %}
+                    <div class="row">
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>조회</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
+                        <div class="col-md-9">
+                            <h4><a href="/qnas/read/{{ post.id }}">{{ post.title }}</a></h4>
+                            <div class="pull-right">
+                                <span>{{ post.user }} / {{ post.created_at }}</span></div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="popular" role="tabpanel">
+                <br>
+                {% for post in  pop_posts %}
+                    <div class="row">
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>조회</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
+                        <div class="col-md-9">
+                            <h4><a href="/qnas/read/{{ post.id }}">{{ post.title }}</a></h4>
+                            <div class="pull-right">
+                                <span>{{ post.user }} / {{ post.created_at }}</span></div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="needanswer" role="tabpanel">
+                <br>
+                {% for post in posts %}
+                    {% if post.comment_set.count == 0 %}
+                        <div class="row">
+                            <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>조회</div>
+                            <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
+                            <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
+                            <div class="col-md-9">
+                                <h4><a href="/qnas/read/{{ post.id }}">{{ post.title }}</a></h4>
+                                <div class="pull-right">
+                                    <span>{{ post.user }} / {{ post.created_at }}</span></div>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="tag" role="tabpanel">태그선택</div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+
+    <script>
+        function selectMajor() {
+            var major_name = $("#majorselect :selected").text();
+            var url = "/qnas/read_courses/" + major_name + "/";
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function (data) {
+                    $("#courseselect").empty();
+                    $(data.courses).each(function (i, e) {
+                        var item = '<option value="' + e.id + '">' + e.name + '</option>';
+                        $("#courseselect").append(item);
+                    });
+                }
+            });
+        }
+
+        function addHash() {
+            document.getElementById("content").value += '#';
+        }
     </script>
-<!--
-	    <form class="write">
-			<div class="form-group">
-				<input name = "title" placeholder="title" class="title">
-    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-
-				<label class="btn btn-default">
-	  			UPLOAD<input type="file" hidden>
-				</label>
-
-				<label class="btn btn-default submit">
-	  			UPLOAD<input type="submit" hidden>
-				</label>
-	 -->
-  			</div>
-	    </form>
-
-	  <ul class="nav nav-tabs" id="myTab" role="tablist">
-		  <li class="nav-item">
-		    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">최신</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">인기</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">답변필요</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">태그선택</a>
-		  </li>
-
-		</ul>
-		<div class="tab-content" id="myTabContent">
-		  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-		  	{% for post in posts %}
-				<h1><a href="/qnas/read/{{post.id}}">{{post.title}}</a></h1>
-                <p>{{ post.user }}</p>
-				<p>{{post.major}}</p>
-				<p>{{post.course}}</p>
-				<p>{{post.content}}</p>
-
-			{% endfor %}
-		  </div>
-		  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-		  <div class="tab-pane fade" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab">...</div>
-		  <div class="tab-pane fade" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">...</div>
-		</div>
-
-	</section>
-</body>
-
-<!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- bootstrap -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
 {% endblock %}

@@ -3,54 +3,55 @@
 {% load static %}
 
 {% block title %}
-Aplus
+    Aplus
 {% endblock %}
 
 {% block menu %}
 
-  <!-- Search -->
-  <section class="search">
-    <form>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
-        <span class="input-group-addon" id="btnGroupAddon">
+    <!-- Search -->
+    <section class="search">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="학과 검색" aria-describedby="btnGroupAddon">
+                <span class="input-group-addon" id="btnGroupAddon">
           <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
         </span>
-      </div>
-    </form>
+            </div>
+        </form>
 
-      {% for major in majors %}
-        {% if major.name == major_name %}
-            <a href="/qnas/{{major.name}}"><span class="name">{{major.name}}</span></a>
-        {% else %}
-            <a href="/qnas/{{major.name}}"><span class="name">{{major.name}}</span></a>
-        {% endif %}
-      {% endfor %}
-  </section>
+        {% for major in majors %}
+            {% if major.name == major_name %}
+                <a href="/qnas/{{ major.name }}"><span class="name">{{ major.name }}</span></a>
+            {% else %}
+                <a href="/qnas/{{ major.name }}"><span class="name">{{ major.name }}</span></a>
+            {% endif %}
+        {% endfor %}
+    </section>
 
-  <section class="search">
-    <form>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="과목 검색" aria-describedby="btnGroupAddon">
-        <span class="input-group-addon" id="btnGroupAddon">
+    <section class="search">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="과목 검색" aria-describedby="btnGroupAddon">
+                <span class="input-group-addon" id="btnGroupAddon">
           <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
         </span>
-      </div>
-    </form>
+            </div>
+        </form>
 
-    {% if major_name != "" %}
-      {% for course in courses %}
-        {% if course.name == course_name %}
-            <a href="/qnas/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
-        {% else %}
-            <a href="/qnas/{{major_name}}/{{course.name}}"><span class="name">{{course.name}}</span></a>
+        {% if major_name != "" %}
+            {% for course in courses %}
+                {% if course.name == course_name %}
+                    <a href="/qnas/{{ major_name }}/{{ course.name }}"><span class="name">{{ course.name }}</span></a>
+                {% else %}
+                    <a href="/qnas/{{ major_name }}/{{ course.name }}"><span class="name">{{ course.name }}</span></a>
+                {% endif %}
+            {% endfor %}
         {% endif %}
-      {% endfor %}
-    {% endif %}
-  </section>
+    </section>
 {% endblock %}
 
 {% block content %}
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -71,7 +72,7 @@ Aplus
 
 
     
-  <section class="search2 col-md-7">
+  <section class="comment">
    <div class="card read">
     <div class="card-body">
      <h3 class="card-title">{{post.title}}</h3>
@@ -98,11 +99,10 @@ Aplus
         {% endfor %}
       </div>
     </div>
-  </div>
+    </div>
 
-
-
-      <div class="card comment">
+        <div class="card read comment1">
+          <div class="card-body">
             <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <input type="hidden" name="post_id" value="{{post.id}}">
@@ -118,6 +118,8 @@ Aplus
         </form> -->
        
         {% endblock %}
+        </div>
       </div>
     </section>
+
 </body>

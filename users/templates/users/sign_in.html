@@ -43,12 +43,7 @@
 
 {% block menu %}{% endblock %}
 
-
 {% block content %}
-
-    {#        <section id="cover">#}
-    {#            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">#}
-    <!-- <div class="carousel-inner" role="listbox"> -->
     <section class="carousel-item active">
         <form action="" method="post">
             {% csrf_token %}
@@ -99,11 +94,10 @@
                             <a href="#" class="make_account">비밀번호 재설정</a>
                         </h6>
                     </div>
-                </div>
-
-            
+                </div>      
                 {#                    </div>#}
                 {#                </section>#}
+
             </div>
         </form>
     </section>

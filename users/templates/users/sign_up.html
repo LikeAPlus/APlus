@@ -1,4 +1,4 @@
-{% extends "qnas/layout.html" %}
+{% extends "users/layout.html" %}
 
 {% load static %}
 
@@ -7,9 +7,6 @@
 {% endblock %}
 
 {% block content %}
-
-    {#    <section id="cover">#}
-    {#        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">#}
     <section class="carousel-item active">
         <form action="" method="post">
             {% csrf_token %}
@@ -22,11 +19,10 @@
                             <p>{{ field.errors }}</p>
                         {% endfor %}
                     </div>
-                    <input type="submit" class="btn btn-warning sign_in" style="width:100%" value="회원가입">
+                    <input type="submit" class="btn btn-warning sign_in" style="width:100%;
+    margin-bottom: 50px;" value="회원가입">
                 </div>
             </div>
         </form>
     </section>
-    {#        </div>#}
-    {#    </section>#}
 {% endblock %}
