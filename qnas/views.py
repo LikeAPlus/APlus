@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -13,12 +14,14 @@ def index(request, major_name='', course_name=''):
     if major_name != '' and course_name != '':
         major = Major.objects.get(e_name=major_name)
         course = Course.objects.get(e_name=course_name)
-        posts = Post.objects.filter(major=major, course=course)
+        posts = Post.objects.filter(major=major, course=course).order_by("-id")
     elif major_name != '':
         major = Major.objects.get(e_name=major_name)
-        posts = Post.objects.filter(major=major)
+        posts = Post.objects.filter(major=major).order_by("-id")
     else:
-        posts = Post.objects.order_by("id").reverse()
+        posts = Post.objects.order_by("-id")
+
+    pop_posts = posts.annotate(num_comments=Count('comment')).order_by('-num_comments')
 
     majors = Major.objects.all()
     if major_name != '':
@@ -26,7 +29,7 @@ def index(request, major_name='', course_name=''):
     else:
         courses = ''
 
-    context = {'posts': posts, 'majors': majors, 'courses': courses, 'major_name': major_name,
+    context = {'posts': posts, 'pop_posts': pop_posts, 'majors': majors, 'courses': courses, 'major_name': major_name,
                'course_name': course_name}
     return render(request, 'qnas/index.html', context)
 
