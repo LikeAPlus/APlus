@@ -118,6 +118,7 @@
                                       {% endfor %}
                                   </select>
 
+
                                   <select class="form-control border-radius-0 col-md-3" id="courseselect" name="course"
                                           style="margin-left: 10px">
                                       {% for course in courses %}
@@ -128,6 +129,35 @@
                                           {% endif %}
                                       {% endfor %}
                                   </select>
+
+                                <!-- <div class="form-group">
+                                  <input type="file" name="image" accept="image/*">
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-start" style="height: 60px;width: 100%;">
+                            <a href="#" onclick="addHash()" style="margin-left: 10px"><img
+                                    src="/static/qnas/hashtag.png" alt="hashtag" style="width:15px"
+                                    class="modal_hashtag"></a>
+                            <label style="margin-bottom:0px;">
+                                <img src="/static/qnas/paperclip.png" alt="paperclip" style="width:15px"
+                                     class="modal_paperclip">
+                                <input type="file" name="image" style="display:none;" accept="image/*" onchange="$('#upload-file-info').html(this.files[0].name);">
+                            </label>
+                            <span id="upload-file-info"></span>
+                            <div class="ml-auto p-2">
+                                <button type="submit" class="btn btn-warning border-radius-0">게시</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function () {
+                $('#myModal').modal('show');
+            })();
+        </script>
 
                                   <!-- <div class="form-group">
                                     <input type="file" name="image" accept="image/*">
@@ -154,6 +184,7 @@
               })();
           </script>
 
+
           <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                   <a class="nav-link active" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
@@ -173,6 +204,62 @@
                      aria-controls="profile">태그선택</a>
               </li>
 
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="home-tab">
+                <br>
+                {% for post in posts %}
+                    <div class="row">
+                        <div class="col-md-1 text-center">{{ post.view_count }}<br>조회</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
+                        <div class="col-md-9">
+                            <h4><a href="/qnas/read/{{ post.id }}">{{ post.title }}</a></h4>
+                            <div class="pull-right">
+                                <span>{{ post.user }} / {{ post.created_at }}</span></div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="popular" role="tabpanel">
+                <br>
+                {% for post in  pop_posts %}
+                    <div class="row">
+                        <div class="col-md-1 text-center">{{ post.view_count }}<br>조회</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
+                        <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
+                        <div class="col-md-9">
+                            <h4><a href="/qnas/read/{{ post.id }}">{{ post.title }}</a></h4>
+                            <div class="pull-right">
+                                <span>{{ post.user }} / {{ post.created_at }}</span></div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="needanswer" role="tabpanel">
+                <br>
+                {% for post in posts %}
+                    {% if post.comment_set.count == 0 %}
+                        <div class="row">
+                            <div class="col-md-1 text-center">{{ post.view_count }}<br>조회</div>
+                            <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>좋아요</div>
+                            <div class="col-md-1 text-center">{{ post.comment_set.count }}<br>답변</div>
+                            <div class="col-md-9">
+                                <h4><a href="/qnas/read/{{ post.id }}">{{ post.title }}</a></h4>
+                                <div class="pull-right">
+                                    <span>{{ post.user }} / {{ post.created_at }}</span></div>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="tag" role="tabpanel">태그선택</div>
+        </div>
+    </section>
+    
           </ul>
           <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="home-tab">
