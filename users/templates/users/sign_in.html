@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-{% extends "users/layout.html" %}
-{% load socialaccount %}
->>>>>>> 0b67934f192e38f667a31bd2018bf584e35ae641
 
 {% load static %}
 {% load socialaccount %}
@@ -48,12 +43,7 @@
 
 {% block menu %}{% endblock %}
 
-
 {% block content %}
-
-    {#        <section id="cover">#}
-    {#            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">#}
-    <!-- <div class="carousel-inner" role="listbox"> -->
     <section class="carousel-item active">
         <form action="" method="post">
             {% csrf_token %}
@@ -104,11 +94,10 @@
                             <a href="#" class="make_account">비밀번호 재설정</a>
                         </h6>
                     </div>
-                </div>
-
-            
+                </div>      
                 {#                    </div>#}
                 {#                </section>#}
+
             </div>
         </form>
     </section>

@@ -29,6 +29,7 @@ class Post(models.Model):
     course = models.ForeignKey(Course)
     title = models.CharField(max_length=123)
     content = models.TextField()
+    # view_count = models.IntegerField()
     # like_count = models.IntegerField()
 
     created_at = models.DateTimeField(auto_now_add=True)

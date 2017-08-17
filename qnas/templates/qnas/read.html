@@ -52,59 +52,74 @@
 
 {% block content %}
 
-    <section class="search2 col-md-7">
-    <div class="card read">
-        <div class="card-body">
-            <h3 class="card-title">{{ post.title }}</h3>
-            <hr>
-            <h6 class="card-subtitle mb-2 text-muted">{{ post.major }}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">{{ post.course }}</h6>
-            <p class="card-text">{{ post.content }}</p>
-            <div class="d-flex justify-content-end">
-                <a href="#" class="card-link">목록</a>
-            </div>
 
-            <div class="comment">
-                {% for comment in comments %}
-                    <p>{{ comment.content }}</p>
-                    <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value="{{ post.id }}">
-                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                        <button type="submit">댓글 삭제</button>
-                    </form>
-                {% endfor %}
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title lang="ko"></title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- your custom css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'qnas/style.css' %}" />
+</head>
+<body>
+
+
+    
+  <section class="comment">
+   <div class="card read">
+    <div class="card-body">
+     <h3 class="card-title">{{post.title}}</h3>
+     <hr>
+      <h6 class="card-subtitle mb-2 text-muted">{{post.major}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{post.course}}</h6>
+      <p class="card-text">{{post.content}}</p>
+      <div class="d-flex justify-content-end">
+        <a href="/qnas" class="card-link">목록</a>
+      </div>
+    
+      <div class="comment">
+        {% for comment in comments %}
+          <div>
+            <p class="content">{{comment.content}}</p>
+             <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value="{{post.id}}">
+              <input type="hidden" name="comment_id" value="{{comment.id}}">
+              <button type="submit" class="btn btn-outline-warning submit" id="delete">x</button>
+            </form>
+          </div>
+
+        {% endfor %}
+      </div>
+    </div>
     </div>
 
-
-
-    <div class="card comment">
-    <div class="card-body">
-    <p lcass="card-text">
-
-    <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="hidden" name="post_id" value="{{ post.id }}">
-        <label>내용</label>
-        <div>
-            <input type="text" name="content">
+        <div class="card read comment1">
+          <div class="card-body">
+            <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value="{{post.id}}">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content" placeholder="댓글을 적어주세요"></textarea>
+              <div class="text-right" style="margin-top: 40px">
+                <input type="submit" class="btn btn-outline-warning submit"></input>
+              </div>
+            </form>
+        <!-- <form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="post_id" value="{{post.id}}">
+          <button type="button" class="btn btn-outline-warning">DELETE</button>
+        </form> -->
+       
+        {% endblock %}
         </div>
-        <button type="submit">작성</button>
-    </form>
-    <br>
+      </div>
+    </section>
 
-    <form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="hidden" name="post_id" value="{{ post.id }}">
-        <button type="submit">글 삭제</button>
-    </form>
-
-{% endblock %}
-
-
-</div>
-</div>
-</section>
 </body>
