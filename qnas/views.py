@@ -7,7 +7,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Major, Course, Post, Comment
 
-
 # Create your views here.
 def index(request, major_name='', course_name=''):
     if major_name != '' and course_name != '':
