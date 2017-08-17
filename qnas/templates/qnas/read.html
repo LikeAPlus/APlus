@@ -85,13 +85,16 @@ Aplus
     
       <div class="comment">
         {% for comment in comments %}
-          <p>{{comment.content}}</p>
-          <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="post_id" value="{{post.id}}">
-            <input type="hidden" name="comment_id" value="{{comment.id}}">
-            <button type="submit">댓글 삭제</button>
-          </form>
+          <div>
+            <p class="content">{{comment.content}}</p>
+             <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value="{{post.id}}">
+              <input type="hidden" name="comment_id" value="{{comment.id}}">
+              <button type="submit" class="btn btn-outline-warning submit" id="delete">x</button>
+            </form>
+          </div>
+
         {% endfor %}
       </div>
     </div>
@@ -100,31 +103,21 @@ Aplus
 
 
       <div class="card comment">
-        <div class="card-body">
-          <p lcass="card-text">
-
-            
-
             <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <input type="hidden" name="post_id" value="{{post.id}}">
-              
-             
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content"></textarea>
-              <button type="submit">작성</button>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content" placeholder="댓글을 적어주세요"></textarea>
+              <div class="text-right" style="margin-top: 40px">
+                <input type="submit" class="btn btn-outline-warning submit"></input>
+              </div>
             </form>
-          <br>
-
-        <form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
+        <!-- <form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="post_id" value="{{post.id}}">
-          <button type="submit">글 삭제</button>
-        </form>
+          <button type="button" class="btn btn-outline-warning">DELETE</button>
+        </form> -->
        
         {% endblock %}
-     
-
-        </div>
       </div>
     </section>
 </body>

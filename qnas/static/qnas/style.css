@@ -298,6 +298,7 @@ input.form-check-input {
     font-size: 40px;
 }
 
+
 .card-subtitle {
     float: right;
     padding: 20px;
@@ -315,6 +316,7 @@ input.form-check-input {
 
 .comment {
     padding: 40px;
+    padding-bottom: 0px;
 }
 
 .card.comment {
@@ -322,6 +324,7 @@ input.form-check-input {
     height: auto;
     border-radius: 5px !important;
     margin-top: 50px;
+    padding-bottom: 0px;
 }
 
 /* Read */
@@ -362,4 +365,34 @@ input.form-check-input {
 
 }
 
+/*
+.btn-outline-warning.submit{
+	float: right;
+	margin: 30px;
+}
+
+.btn.btn-outline-warning{
+	border: none !important;
+}
+*/
+
+/*.content{
+	float: left;
+	display: inline-block;
+}
+
+#delete{
+	float: right !important;
+}
+*/
+/*::-webkit-input-placeholder{
+	color: #d6d6d6;
+} 
+*/
+
+
+.text-right{
+	margin-top: 40px;
+	text-align: right !important;
+}
 
