@@ -97,12 +97,25 @@ div.container {
     /*float: left;*/
 }
 
-/*.search2 {
-    margin-top: 20px;
-    margin-left: 420px;
-    margin-right: 20px;
+/*.search2 {*/
+    /*margin-top: 20px;*/
+    /*margin-left: 420px;*/
+    /*margin-right: 20px;*/
+/*}*/
+div.container {
+    margin: 0px;
+    padding: 0px;
 }
-*/
+
+.col-3.first {
+    padding-right: 0px;
+}
+
+.col-3.second {
+    padding-left: 0px;
+
+}
+
 select:not([multiple]) {
     -webkit-appearance: none;
     -moz-appearance: none;
