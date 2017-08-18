@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.auth.decorators import login_required
+from .forms import PostForm
 from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -47,29 +47,48 @@ def read_courses(request, major_name):
     return JsonResponse({'courses': courses_info})
 
 
-@login_required(login_url='/users/signin/')
-def create(request):
+# @login_required(login_url='/users/signin/')
+# def create(request):
+#     if request.method == 'POST':
+#         major = Major.objects.get(id=request.POST['major'])
+#         course = Course.objects.get(id=request.POST['course'])
+#         title = request.POST['title']
+#         content = request.POST['content']
+#         if request.POST['image'] != '':
+#             image = request.FILES['image']
+#             post = Post(user=request.user, major=major, course=course, title=title, content=content, image=image)
+#         else:
+#             post = Post(user=request.user, major=major, course=course, title=title, content=content)
+#         post.save()
+#
+#         return redirect('qnas:read', post.id)
+#
+#     else:
+#
+#         majors = Major.objects.all()
+#         courses = Course.objects.all()
+#         context = {'majors': majors, 'courses': courses}
+#
+#         return render(request, 'qnas/create.html', context)
+
+def create1(request):
     if request.method == 'POST':
-        major = Major.objects.get(id=request.POST['major'])
-        course = Course.objects.get(id=request.POST['course'])
-        title = request.POST['title']
-        content = request.POST['content']
-        if request.POST['image'] != '':
-            image = request.FILES['image']
-            post = Post(user=request.user, major=major, course=course, title=title, content=content, image=image)
-        else:
-            post = Post(user=request.user, major=major, course=course, title=title, content=content)
-        post.save()
 
-        return redirect('qnas:read', post.id)
+        form = PostForm(request.POST, request.FILES)
+        print(request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+
+            return redirect('qnas:read', obj.id)
     else:
+        form = PostForm()
 
-        majors = Major.objects.all()
-        courses = Course.objects.all()
-        context = {'majors': majors, 'courses': courses}
-
-        return render(request, 'qnas/create.html', context)
-
+    ctx = {
+        'form': form
+    }
+    return render(request, 'qnas/create.html', ctx)
 
 def delete_question(request):
     post = Post.objects.get(id=request.POST['post_id'])

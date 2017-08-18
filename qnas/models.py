@@ -29,7 +29,7 @@ class Post(models.Model):
     course = models.ForeignKey(Course)
     title = models.CharField(max_length=123)
     content = models.TextField()
-    # image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.ImageField(upload_to='qnas/%Y/%m/%d', null=True, blank=True)
     view_count = models.IntegerField(default=0)
     # like_count = models.IntegerField()
 
