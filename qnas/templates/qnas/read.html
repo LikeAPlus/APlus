@@ -3,104 +3,60 @@
 {% load static %}
 
 {% block title %}
-    APlus
-{% endblock %}
-
-{% block menu %}
-
-    <!-- Search -->
-    <section class="search">
-        <form>
-            <div class="input-group">
-                <input type="text" class="form-control border-left-0 border-radius-0" placeholder="학과 검색"
-                       aria-describedby="btnGroupAddon">
-                <span class="input-group-addon border-right-0 border-radius-0" id="btnGroupAddon">
-          <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-        </span>
-            </div>
-        </form>
-
-        {% for major in majors %}
-            {% if major.name == major_name %}
-                <a href="/qnas/{{ major.e_name }}"><span class="name">{{ major.name }}</span></a>
-            {% else %}
-                <a href="/qnas/{{ major.e_name }}"><span class="name">{{ major.name }}</span></a>
-            {% endif %}
-        {% endfor %}
-    </section>
-
-    <section class="search">
-        <form>
-            <div class="input-group">
-                <input type="text" class="form-control border-left-0 border-radius-0" placeholder="과목 검색"
-                       aria-describedby="btnGroupAddon">
-                <span class="input-group-addon border-right-0 border-radius-0" id="btnGroupAddon">
-          <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-        </span>
-            </div>
-        </form>
-
-        {% if major_name != "" %}
-            {% for course in courses %}
-                {% if course.name == course_name %}
-                    <a href="/qnas/{{ major_name }}/{{ course.e_name }}"><span class="name">{{ course.name }}</span></a>
-                {% else %}
-                    <a href="/qnas/{{ major_name }}/{{ course.e_name }}"><span class="name">{{ course.name }}</span></a>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    </section>
+    APlus - {{ post.title }}
 {% endblock %}
 
 {% block content %}
-    <section class="search2">
-        <div class="card read">
-            <div class="card-body">
-             <h3 class="card-title">{{post.title}}</h3>
-             <hr>
-              <h6 class="card-subtitle mb-2 text-muted">{{post.major}}</h6>
-              <h6 class="card-subtitle mb-2 text-muted">{{post.course}}</h6>
-              <p class="card-text">{{post.content}}</p>
-              <div class="d-flex justify-content-end">
-                <a href="/qnas" class="card-link">목록</a>
-              </div>
-            
-              <div class="comment">
-                {% for comment in comments %}
-                  <div>
-                    <p class="content">{{comment.content}}</p>
-                     <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
-                      {% csrf_token %}
-                      <input type="hidden" name="post_id" value="{{post.id}}">
-                      <input type="hidden" name="comment_id" value="{{comment.id}}">
-                      <button type="submit" class="btn btn-outline-warning submit" id="delete">x</button>
-                    </form>
-                  </div>
-
-                {% endfor %}
-              </div>
+    <div class="card read" style="margin-top: 83px;">
+        <div class="card-body">
+            <h3 class="card-title">Q: {{ post.title }}</h3>
+            <h6 class="card-subtitle mb-2 text-muted">{{ post.course }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ post.major }}</h6>
+            <br>
+            <hr>
+            {% if post.image != '' %}
+                <div class="text-center">
+                    <img class="img-fluid" src="{{ post.image.url }}" style="max-height: 300px;"/>
+                </div>
+            {% endif %}
+            <p class="card-text" style="white-space: pre-wrap;">{% autoescape on %}{{ post.content | safe }}{% endautoescape %}</p>
+            <div class="d-flex justify-content-end">
+                <form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <button type="submit" class="btn btn-outline-warning">삭제</button>
+                </form>&nbsp;
+                <a href="/qnas" class="card-link btn btn-outline-warning">목록</a>
             </div>
-         </div>
 
-
-             <div class="card read comment1">
-          <div class="card-body">
-            <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <input type="hidden" name="post_id" value="{{post.id}}">
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content" placeholder="댓글을 적어주세요"></textarea>
-              <div class="text-right" style="margin-top: 40px">
-                <input type="submit" class="btn btn-outline-warning submit"></input>
-              </div>
-            </form>
-        <!-- <form action="{% url 'qnas:delete_question' %}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          <input type="hidden" name="post_id" value="{{post.id}}">
-          <button type="button" class="btn btn-outline-warning">DELETE</button>
-        </form> -->
-       
-        {% endblock %}
+            <div class="comment">
+                {% for comment in comments %}
+                    <div class="row">
+                        <p class="content">{{ comment.user }}: {{ comment.content }}</p>&nbsp;
+                        <form action="{% url 'qnas:delete_answer' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                            <button type="submit" class="btn btn-outline-warning btn-sm submit" id="delete">x</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-      </div>
-     </section>
+    </div>
+
+    <div class="card read comment1" style="margin-bottom: 20px;">
+        <div class="card-body">
+            <form action="{% url 'qnas:create_answer' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content"
+                          placeholder="댓글을 적어주세요"></textarea>
+                <div class="text-right" style="margin-top: 40px">
+                    <input type="submit" class="btn btn-outline-warning submit">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
         

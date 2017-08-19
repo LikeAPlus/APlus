@@ -21,7 +21,8 @@ def index(request, major_name='', course_name=''):
     else:
         posts = Post.objects.order_by("-id")
 
-    pop_posts = posts.annotate(num_comments=Count('comment')).order_by('-num_comments')
+    # pop_posts = posts.annotate(num_comments=Count('comment')).order_by('-num_comments')
+    pop_posts = Post.objects.order_by("-view_count")
 
     majors = Major.objects.all()
     if major_name != '':
@@ -89,6 +90,7 @@ def create1(request):
         'form': form
     }
     return render(request, 'qnas/create.html', ctx)
+
 
 def delete_question(request):
     post = Post.objects.get(id=request.POST['post_id'])

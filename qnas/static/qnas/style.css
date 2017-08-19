@@ -360,7 +360,6 @@ input.form-check-input {
 }
 
 .card-text {
-	margin-top: 100px;
     padding: 40px;
 }
 
@@ -382,7 +381,7 @@ input.form-check-input {
     width: auto;
     height: auto;
     border-radius: 5px !important;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
     padding: 40px;
