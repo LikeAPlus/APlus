@@ -22,7 +22,7 @@ def index(request, major_name='', course_name=''):
         posts = Post.objects.order_by("-id")
 
     # pop_posts = posts.annotate(num_comments=Count('comment')).order_by('-num_comments')
-    pop_posts = Post.objects.order_by("-view_count")
+    pop_posts = posts.order_by("-view_count")
 
     majors = Major.objects.all()
     if major_name != '':
